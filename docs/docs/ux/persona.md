@@ -1,8 +1,6 @@
-# Persona
-
-<div style="background-color:azure; color:black;">
-    <center style="padding-top:30px; margin-left:10px; margin-right:10px">
-        <img width="50%" src="https://tewbhv.vtexassets.com/arquivos/ids/230832-800-auto?v=638300589062300000&width=800&height=auto&aspect=true">
+<div style={{backgroundColor:"#E9DCC9", color:"#000"}}>
+    <center style={{paddingTop:"30px", marginLeft:"10px", marginRight:"10px"}}>
+        <img width="50%" style={{borderRadius:"15px"}} src="https://tewbhv.vtexassets.com/arquivos/ids/230832-800-auto?v=638300589062300000&width=800&height=auto&aspect=true"/>
         <h3>
             Nome: Paulo Henrique
         </h3>
@@ -18,7 +16,7 @@
             </strong>
         </h4>
     </center>
-    <div style="margin-left:10px; padding-bottom:30px; margin-right:10px">
+    <div style={{marginLeft:"10px", paddingBottom:"30px", marginRight:"10px"}}>
         <h3>
             Biografia
         </h3>
@@ -56,6 +54,64 @@
             </li>
             <li>
                 Tenho medo de perder meu emprego para um robô.
+            </li>
+        </ul>
+    </div>
+</div>
+<br/>
+<div style={{backgroundColor:"#88D1F1", color:"#000"}}>
+    <center style={{paddingTop:"30px", marginLeft:"10px", marginRight:"10px"}}>
+        <img width="50%" style={{borderRadius:"15px"}} src="https://img.freepik.com/fotos-premium/homem-feliz-e-confiante-em-t-shirt-cinza-em-branco_39688-4025.jpg?size=626&ext=jpg"/>
+        <h3>
+            Nome: João Pedro
+        </h3>
+        <h4>
+            Idade: 24 anos
+        </h4>
+        <h4>
+            Ocupação: Técnico de manutenção
+        </h4>
+        <h4>
+            <strong> 
+                Não consigo encontrar o material que preciso.
+            </strong>
+        </h4>
+    </center>
+    <div style={{marginLeft:"10px", paddingBottom:"30px", marginRight:"10px"}}>
+        <h3>
+            Biografia
+        </h3>
+        <ul>
+            <li>
+                Nasci no interior de São Paulo, e me mudei para a capital para estudar.
+            </li>
+            <li>
+                Ingressei na Ambev há menos de um ano, e não conheço muito da estrutura da empresa.
+            </li>
+            <li>
+                Essa é a minha primeira experiência em uma empresa de grande porte, então ainda estou me adaptando, principalmente com o setor de logística.
+            </li>
+        </ul>
+        <h3>
+            Características
+        </h3>
+        <ul>
+            <li>
+                Sou um pouco impaciente, e não gosto de perder tempo.
+            </li>
+            <li>
+                Não tenho costume de utilizar computadores, então não sou muito bom com tecnologia.
+            </li>
+        </ul>
+        <h3>
+            Principais dores
+        </h3>
+        <ul>
+            <li>
+                Ainda não consigo me localizar muito bem dentro da empresa, então não consigo encontrar o almoxarifado.
+            </li>
+            <li>
+                Em algumas vezes, não sei exatamente o material que preciso, então não consigo encontrar o produto.
             </li>
         </ul>
     </div>
