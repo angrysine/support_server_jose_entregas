@@ -14,10 +14,9 @@ sidebar_position: 1
 | 2   | Funcional | Capacidade de mapear espaços que o robô percorreu                                      |
 | 3   | Funcional | Robô deve ser capaz de percorrer o caminho até um item específico em um espaço mapeado |
 | 4   | Funcional | Deve haver controle automático do inventário das peças retiradas pelo robô             |
-| 5   | Funcional | Deve haver uma aplicação que permita ver os itens disponíveis                          |
+| 5   | Funcional | Deve haver uma aplicação que permita ver o inventário                          |
 | 6   | Funcional | Deve haver uma aplicação que permita ativar o robô para pegar um item                  |
-| 7   | Funcional | Deve haver uma aplicação que permita ver o inventário                                  |
-| 8   | Funcional | A aplicação deve ter um método de parar o robô                                         |
+| 7   | Funcional | A aplicação deve ter um método de parar o robô                                         |
 
 </div>
 
