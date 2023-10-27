@@ -12,7 +12,7 @@ Considerando o contexto da aplicação, temos como cenário macro o mercado de a
 
 Considerando o escopo do projeto em implementar um robô para guiar os almoxarifes em um almoxarifado, é possível estimar o TAM tendo como público alvo empresas de grande e médio porte que possuem um almoxarifado relativamente grande e consolidado onde é viável a utilização de robôs. Segundo 
 
-Segundo o IBGE[^2], o Brasil possui cerca de 5.748.599 empresas e dessa quantidade, suponhamos que 2% desse número seja composto por médias e grandes empresas, totalizando 574.859 empresas. Considerando que cada uma esteja disposta a investir uma média de US$ 50.000 para implementar o sistema de robôs.
+Segundo o IBGE[^2], o Brasil possui cerca de 5.748.599 empresas e dessa quantidade, suponhamos que 2% desse número seja composto por médias e grandes empresas, totalizando 114.972 empresas. Considerando que cada uma esteja disposta a investir uma média de US$ 50.000 para implementar o sistema de robôs.
 
 Assim, o cálculo do TAM seria:
 TAM = Número total de clientes × Preço médio por cliente

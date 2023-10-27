@@ -31,26 +31,49 @@ Essas estimativas permitem inferir um **total de R$ 87.000 por ano** para a oper
 
 ## Investimentos Iniciais
 
+Para a elaboração da solução, temos a participação de um time estipulado a seguir.
+
+| Cargo | Salário mensal | Quantidade | Total (Anual) |
+| ----------- | ----------- | ----------- | ----------- | 
+| Dev Junior | R$ 2.800 | 7 | R$ 235.200 |
+| Dev Pleno | R$ 8.000 | 1 | R$ 96.000 |
+| Dev Senior | R$ 12.500 | 1 | R$ 144.000 |
+
 ### Cenário de protótipo
 
 Nos custos operacionais do cenário de protótipo, é importante observar que a presença do almoxarife ainda é necessária. Além do salário, foram incluídos gastos com treinamento, que são essenciais para garantir que o almoxarife seja capaz de operar com eficácia o robô e os sensores. Essa capacitação é fundamental para a integração bem-sucedida do robô no ambiente de trabalho.
 
-| Componente | Preço Unitário | Quantidade | Total | 
-| ----------- | ----------- | ----------- | ----------- |
-| [TURTLEBOT3 Burger](https://www.robotis.us/turtlebot-3-burger-us/) | R$ 4.284,78 | 2 | R$ 8.569,56 |
-| [Display 7'](https://www.rsrobotica.com.br/produto/tela-touch-screen-7-polegadas-800x480-hdmi.html) | R$ 529,90 | 2 | R$ 1059,80 |
-| Sensor 1 |  |  |  |
-| Total |  |  |  |
+| Componente | Preço Unitário | Imposto | Quantidade | Total | 
+| ----------- | ----------- | --------- | ----------- | ----------- |
+| [TURTLEBOT3 Burger](https://www.robotis.us/turtlebot-3-burger-us/) | R$ 4.284,78 | 20% | 2 | R$ 10.256,4  8 |
+| [Display 7'](https://www.rsrobotica.com.br/produto/tela-touch-screen-7-polegadas-800x480-hdmi.html) | R$ 529,90 | 20% | 2 | R$ 1.271,76 |
+| Total |  |  | | R$ 11.528,24 |
 
 ### Cenário definitivo
 
 No cenário definitivo, a lógica de projeção considera a eliminação da necessidade de um almoxarife para tarefas de busca e localização de objetos. Com a implementação de um Robô Móvel Autônomo próprio, equipado com sensores e módulos industriais, o robô pode realizar essas tarefas de forma autônoma e eficiente. Isso permite que o almoxarife direcione seus esforços para outras atividades estratégicas na empresa.
 
-| Componente | Preço Unitário | Quantidade | Total | 
-| ----------- | ----------- | ----------- | ----------- |
-| [Robô Móvel Autônomo](https://bostondynamics.com/solutions/warehouse-automation/) | R$ 13.200 | 1 | R$ 13.200 |
-| [Display 14'](https://us.softbankrobotics.com/pepper) |  |  |  |
-| Total |  |  |  |
+| Componente | Preço Unitário | Imposto |  Quantidade | Total | 
+| ----------- | ----------- | ---------- |----------- | ----------- |
+| [Robô Móvel Autônomo](https://bostondynamics.com/solutions/warehouse-automation/) | R$ 120.000 | 20% | 1 | R$ 144.000 |
+| Total |  |  | | R$ 144.000 |
+
+### Total estimado
+
+- Cenário de protótipo:
+  Total de Equipamentos: R$ 11.528,24
+  Custos com manutenção (estimado): R$ 3.458,47 (30% do valor de equipamentos)
+  Total de Salários da Equipe de Desenvolvimento: R$ 562.200,00
+  Total de Salários do Almoxarife: R$ 87.000,00
+  Soma Total do Cenário de Protótipo: R$ 660.728,24
+
+- Cenário definitivo:
+  Total de Equipamentos: R$ 144.000
+  Custos com manutenção: R$ 43.200 (30% do valor de equipamentos)
+  Total de Salários da Equipe de Desenvolvimento: R$ 562.200,00
+  Soma Total do Cenário Definitivo: R$ 749.400,00
+
+Portanto, a soma dos custos para o cenário de protótipo é R$ 660.728,24 e a soma dos custos para o cenário definitivo é R$ 749.400,00. Esses valores refletem o custo total de implementação em cada cenário, considerando os equipamentos e os salários da equipe de desenvolvimento.
 
 ## Projeções de Receita
 
@@ -66,7 +89,6 @@ No cenário definitivo, a lógica de projeção considera a eliminação da nece
 
 Devido à natureza do projeto, não há projeções de retorno de investimento.
 
-
 ## Lógica de projeção
 
 A lógica de projeção nesta análise financeira é construída com base em diversos fatores críticos que influenciam os custos, investimentos e projeções de receita.
@@ -76,6 +98,8 @@ A lógica de projeção nesta análise financeira é construída com base em div
 **Salário do Almoxarife:** O cálculo dos custos operacionais incluiu o salário do almoxarife, com base nas informações obtidas no Glassdoor. Isso assegura uma estimativa realista dos gastos com pessoal, levando em consideração a remuneração média do profissional na região.
 
 **Projeções de Receita:** Embora não se espere receita no primeiro ano de implementação, destacamos o potencial de geração de receita no futuro, caso a solução seja comercializada. Essas projeções de receita podem variar de acordo com as decisões da empresa e as condições de mercado, sendo baseadas em premissas específicas e projeções de demanda.
+
+**Impostos Incluídos:** Para garantir uma análise mais precisa dos custos, todos os valores apresentados nos cenários de protótipo e definitivo incluem uma taxa de imposto de 20% sobre os equipamentos. Essa inclusão de impostos nos custos totais ajuda a considerar todas as despesas associadas à implementação do projeto.
 
 **Outras Variáveis:** Além disso, consideramos outras variáveis relevantes, como despesas de manutenção, taxas de inflação, taxas de câmbio, custos operacionais, e possíveis riscos que podem afetar os resultados financeiros do projeto.
 
