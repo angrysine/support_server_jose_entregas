@@ -1,5 +1,7 @@
 # Canvas da Proposta de Valor
 
+![img alt](/img/value.png)
+
 ## Produtos e serviços
 
 - Utilização de um AVG com sistema de fala
