@@ -1,3 +1,7 @@
+---
+sidebar_position: 3
+---
+
 # Canvas da Proposta de Valor
 
 ![img alt](/img/value.png)
