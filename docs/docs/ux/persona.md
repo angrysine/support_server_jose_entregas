@@ -58,6 +58,14 @@
                 Tenho medo de perder meu emprego para um robô.
             </li>
         </ul>
+        <h3>
+            Pontos de acessibilidade
+        </h3>
+        <ul>
+            <li>
+                Não consigo enxergar muito bem de perto, então preciso utilizar óculos para leitura.
+            </li>
+        </ul>
     </div>
 </div>
 <br/>
@@ -114,6 +122,17 @@
             </li>
             <li>
                 Em algumas vezes, não sei exatamente o material que preciso, então não consigo encontrar o produto.
+            </li>
+        </ul>
+        <h3>
+            Pontos de acessibilidade
+        </h3>
+        <ul>
+            <li>
+                Tenho dificuldades em lidar com uma linguagem muito formal.
+            </li>
+            <li>
+                Devido ao trabalho bastante barulhento por anos, não consigo ouvir muito bem.
             </li>
         </ul>
     </div>
