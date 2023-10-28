@@ -79,13 +79,13 @@ const config = {
             position: "left",
           },
           {
-            to: "docs/category/liderança",
-            label: "Liderança",
+            to: "docs/category/programação",
+            label: "Programação",
             position: "left",
           },
           {
-            to: "docs/category/programação",
-            label: "Programação",
+            to: "docs/category/liderança",
+            label: "Liderança",
             position: "left",
           },
         ],
