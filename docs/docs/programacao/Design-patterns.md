@@ -14,7 +14,7 @@ Em um primeiro momento, utilizaremos algoritmos de navegação para realizar as 
 
 ### Tabelas
 
-
+A princípio, será utilizado um banco de dados relacional, PostgreSQL. No banco de dados serão criadas tabelas para armazenar informações do robô, como por exemplo, a posição atual do robô, a posição de destino, a posição de origem, etc, além disso, o sistema de gerenciamento do almoxarifado utilizará uma tabela deste banco para verificar a disponibilidade de peças, baixa das peças solicitadas, etc.
 
 ## Design Patterns
 
