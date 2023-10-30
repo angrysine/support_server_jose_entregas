@@ -20,8 +20,8 @@ Em um primeiro momento, utilizaremos algoritmos de navegação para realizar as 
 
 ### Singleton
 
-O Singleton é um padrão de design que garante que uma classe tenha apenas uma instância e fornece um ponto de acesso global a essa instância. No contexto do ROS (Robot Operating System), usar o Singleton para o ROS Master é uma escolha comum, pois o ROS Master é um componente central que gerencia a comunicação entre nós em um sistema ROS.
+O _Singleton_ é um padrão de design que garante que uma classe tenha apenas uma instância e fornece um ponto de acesso global a essa instância. No contexto do ROS (Robot Operating System), usar o Singleton para o ROS Master é uma escolha comum, pois o ROS Master é um componente central que gerencia a comunicação entre nós em um sistema ROS.
 
 ### Observer
 
-
+O _Observer_ é um padrão de design que consiste em dois tipos de objetos; _Publishers_ e _Subscribers_. O primeiro possui um _Subject_, que é basicamente alguma informação de interesse dos Subscribers. Sempre que o _Subject_ muda de estado, é papel de _Publisher_ notificar todos os _Subscribers_ inscritos neste _Subject_, da mudança desse estado. 
