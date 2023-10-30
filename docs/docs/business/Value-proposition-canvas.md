@@ -15,7 +15,6 @@ sidebar_position: 3
 - O robô apontará o material desejado com rapidez
 - O robô irá planejar a rota mais curta para o almoxarifado
 
-
 ## Aliviam as dores
 
 - A conversação com o AVG facilita a determinação do material desejado

@@ -16,16 +16,15 @@ No cenário definitivo, a solução contemplaria o uso de um Robô Móvel Autôn
 
 Essa abordagem abrange tanto a fase inicial de teste e concepção quanto a perspectiva de implementação a longo prazo, proporcionando uma visão completa dos aspectos financeiros do projeto.
 
-
 ## Custos operacionais (Anuais)
 
 Para a análise de custos operacionais atuais, foram considerados os gastos com equipamentos, bem como custos operacionais.
 
-| Descrição | Valor (R$) |
-| ----------- | ----------- |
-| Salário do Almoxarife |  R$ 48.000 |
-| Benefícios | R$ 24.000 |
-| Equipamentos | R$ 15.000 |
+| Descrição             | Valor (R$) |
+| --------------------- | ---------- |
+| Salário do Almoxarife | R$ 48.000  |
+| Benefícios            | R$ 24.000  |
+| Equipamentos          | R$ 15.000  |
 
 Essas estimativas permitem inferir um **total de R$ 87.000 por ano** para a operação no almoxarifado.
 
@@ -33,30 +32,30 @@ Essas estimativas permitem inferir um **total de R$ 87.000 por ano** para a oper
 
 Para a elaboração da solução, temos a participação de um time estipulado a seguir.
 
-| Cargo | Salário mensal | Quantidade | Total (Anual) |
-| ----------- | ----------- | ----------- | ----------- | 
-| Dev Junior | R$ 2.800 | 7 | R$ 235.200 |
-| Dev Pleno | R$ 8.000 | 1 | R$ 96.000 |
-| Dev Senior | R$ 12.500 | 1 | R$ 144.000 |
+| Cargo      | Salário mensal | Quantidade | Total (Anual) |
+| ---------- | -------------- | ---------- | ------------- |
+| Dev Junior | R$ 2.800       | 7          | R$ 235.200    |
+| Dev Pleno  | R$ 8.000       | 1          | R$ 96.000     |
+| Dev Senior | R$ 12.500      | 1          | R$ 144.000    |
 
 ### Cenário de protótipo
 
 Nos custos operacionais do cenário de protótipo, é importante observar que a presença do almoxarife ainda é necessária. Além do salário, foram incluídos gastos com treinamento, que são essenciais para garantir que o almoxarife seja capaz de operar com eficácia o robô e os sensores. Essa capacitação é fundamental para a integração bem-sucedida do robô no ambiente de trabalho.
 
-| Componente | Preço Unitário | Imposto | Quantidade | Total | 
-| ----------- | ----------- | --------- | ----------- | ----------- |
-| [TURTLEBOT3 Burger](https://www.robotis.us/turtlebot-3-burger-us/) | R$ 4.284,78 | 20% | 2 | R$ 10.256,4  8 |
-| [Display 7'](https://www.rsrobotica.com.br/produto/tela-touch-screen-7-polegadas-800x480-hdmi.html) | R$ 529,90 | 20% | 2 | R$ 1.271,76 |
-| Total |  |  | | R$ 11.528,24 |
+| Componente                                                                                          | Preço Unitário | Imposto | Quantidade | Total         |
+| --------------------------------------------------------------------------------------------------- | -------------- | ------- | ---------- | ------------- |
+| [TURTLEBOT3 Burger](https://www.robotis.us/turtlebot-3-burger-us/)                                  | R$ 4.284,78    | 20%     | 2          | R$ 10.256,4 8 |
+| [Display 7'](https://www.rsrobotica.com.br/produto/tela-touch-screen-7-polegadas-800x480-hdmi.html) | R$ 529,90      | 20%     | 2          | R$ 1.271,76   |
+| Total                                                                                               |                |         |            | R$ 11.528,24  |
 
 ### Cenário definitivo
 
 No cenário definitivo, a lógica de projeção considera a eliminação da necessidade de um almoxarife para tarefas de busca e localização de objetos. Com a implementação de um Robô Móvel Autônomo próprio, equipado com sensores e módulos industriais, o robô pode realizar essas tarefas de forma autônoma e eficiente. Isso permite que o almoxarife direcione seus esforços para outras atividades estratégicas na empresa.
 
-| Componente | Preço Unitário | Imposto |  Quantidade | Total | 
-| ----------- | ----------- | ---------- |----------- | ----------- |
-| [Robô Móvel Autônomo](https://bostondynamics.com/solutions/warehouse-automation/) | R$ 120.000 | 20% | 1 | R$ 144.000 |
-| Total |  |  | | R$ 144.000 |
+| Componente                                                                        | Preço Unitário | Imposto | Quantidade | Total      |
+| --------------------------------------------------------------------------------- | -------------- | ------- | ---------- | ---------- |
+| [Robô Móvel Autônomo](https://bostondynamics.com/solutions/warehouse-automation/) | R$ 120.000     | 20%     | 1          | R$ 144.000 |
+| Total                                                                             |                |         |            | R$ 144.000 |
 
 ### Total estimado
 
@@ -107,4 +106,4 @@ A lógica de projeção nesta análise financeira é construída com base em div
 
 Apesar de não estabelecer receita a curto prazo, a implementação do projeto visa a eficiência operacional no almoxarifado, atuando como substituto do almoxarife para liberar mão-de-obra para outros setores da empresa.
 
-*Nota:* Esta análise financeira é uma estimativa e está sujeita a variações. Recomenda-se revisar e atualizar periodicamente as projeções à medida que o projeto avança e os dados reais se tornam disponíveis.
+_Nota:_ Esta análise financeira é uma estimativa e está sujeita a variações. Recomenda-se revisar e atualizar periodicamente as projeções à medida que o projeto avança e os dados reais se tornam disponíveis.
