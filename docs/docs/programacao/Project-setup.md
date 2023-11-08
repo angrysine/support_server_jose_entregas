@@ -93,6 +93,9 @@ sudo groupadd docker
 
 # Adiciona o usuário atual ao grupo docker
 sudo usermod -aG docker $USER
+
+# Ativa as mudanças no grupo docker
+newgrp docker
 ```
 
 </TabItem>
