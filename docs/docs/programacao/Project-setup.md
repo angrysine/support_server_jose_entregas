@@ -17,6 +17,8 @@ _:warning: **Atenção**: Os comandos a seguir são dependências do servidor e 
 
 ### Docker
 
+O Docker é uma ferramenta que permite a execução de aplicações em ambientes isolados, chamados de containers. Para instalar o Docker, siga os passos abaixo:
+
 #### Remoção de versões antigas e adição do repositório
 
 <Tabs defaultValue="remove-docker" values={[
@@ -94,10 +96,83 @@ sudo groupadd docker
 # Adiciona o usuário atual ao grupo docker
 sudo usermod -aG docker $USER
 
-# Ativa as mudanças no grupo docker
+# Ativa as mudanças no grupo docker para o usuário atual
 newgrp docker
 ```
 
 </TabItem>
 
 </Tabs>
+
+### Git
+
+O Git é uma ferramenta de controle de versão de código fonte. Para instalar o Git, siga os passos abaixo:
+
+<Tabs defaultValue="install-git" values={[
+{label: 'Instalar git', value: 'install-git'},
+{label: 'Clonar repositório', value: 'clone-repository'},
+]}>
+
+<TabItem value="install-git">
+
+```bash
+# Instala o git
+sudo apt install git
+```
+
+</TabItem>
+
+<TabItem value="clone-repository">
+
+```bash
+# Clona o repositório
+git clone git@github.com:2023M8T2-Inteli/grupo1.git
+```
+
+</TabItem>
+
+</Tabs>
+
+## Execução do sistema
+
+As instruções a seguir são para execução do sistema no servidor e no robô.
+
+### Entrar na pasta do código fonte
+
+O código fonte do projeto contém duas principais pastas, uma para o servidor e outra para o robô. Para executar o sistema, é necessário entrar na pasta do código fonte do dispositivo que será utilizado.
+
+<Tabs defaultValue="server" values={[
+{label: 'Servidor', value: 'server'},
+{label: 'TurtleBot', value: 'turtlebot'},
+]}>
+
+<TabItem value="server">
+
+```bash
+# Entra na pasta para execução do servidor
+cd src/server
+```
+
+</TabItem>
+
+<TabItem value="turtlebot">
+
+```bash
+# Entra na pasta para execução do robô
+cd src/turtlebot
+```
+
+</TabItem>
+
+</Tabs>
+
+### Executar o container
+
+Para executar o container, execute o comando abaixo em cada dispositivo:
+
+```bash
+# Executa o container
+docker compose up
+```
+
+_:four_leaf_clover: **Dica**: Para executar o container em segundo plano, execute o comando `docker compose up -d`. Caso queira parar a execução do container, execute o comando `docker compose down`._
