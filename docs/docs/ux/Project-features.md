@@ -1,19 +1,23 @@
 # Funcionalidades desenvolvidas
 
-A seguir, será apresentado as funcionalidades desenvolvidas no atual estado do projeto, com suas respectivas descrições e resultados.
+Funcionalidades desenvolvidas no estado do projeto por _sprints_, cada _sprint_ possui um conjunto de funcionalidades que foram desenvolvidas e testadas. As funcionalidades foram traçadas a partir da jornada do usuário e das necessidades do cliente.
 
-## Será possível realizar:
-
--   Visualizar em tempo real a posição do robô no mapa pré-criado;
--   Macar a posição inicial do robô em relação ao mapa;
--   Dedicar um ponto como objetivo de chegada do robô em relação ao mapa a patir de comandos de terminal (CLI) e visualizar a rota traçada;
--   Desvio automático de obstáculos não mapeados;
-
-## Não será possível realizar:
-
--   Criar uma rotina de execução de tarefas (interação com outros sistemas);
--   Adicionar pontos e marcar o que são cada um deles (exemplo: Prateleira A1, Prateleira B5, etc);
--   Atribuir localização de items do almoxarifado em cada ponto;
--   Interação amigável com frontend ou interação com usuário final;
--   Pegar / carregar peças em prateleiras;
--   Indentificar pontos no mapa por meio de QR Code, imagens ou outros meios;
+| Funcionalidade                                           | Sprint 1 | Sprint 2 | Sprint 3 | Sprint 4 | Sprint 5 |
+| -------------------------------------------------------- | :------: | :------: | :------: | :------: | :------: |
+| Visualizar posição do robô no mapa pré-criado            |          |    ✔️    |          |          |          |
+| Marcar posição inicial do robô                           |          |    ✔️    |          |          |          |
+| Definir ponto objetivo e visualizar rota por CLI         |          |    ✔️    |          |          |          |
+| Desvio automático de obstáculos não mapeados             |          |    ✔️    |          |          |          |
+| Criar rotina de execução de tarefas                      |          |          |          |          |          |
+| Adicionar pontos e marcar sua função (ex: Prateleira A1) |          |          |          |          |          |
+| Atribuir localização de itens do almoxarifado            |          |          |          |          |          |
+| Interação com frontend para o usuário final              |          |          |          |          |          |
+| Identificar pontos no mapa por QR Code ou imagens        |          |          |          |          |          |
+| Salvar o histórico de solicitações ao robô               |          |          |          |          |          |
+| Sistema de mensageria de email para notificações         |          |          |          |          |          |
+| Reconhecimento de voz para interação com o usuário       |          |          |          |          |          |
+| Chatbot para interação com o usuário                     |          |          |          |          |          |
+| Relatórios automatizados de atividade                    |          |          |          |          |          |
+| Facilitador de integração com sistema de estoque         |          |          |          |          |          |
+| Monitoramento de saúde estrutural e sistema de avisos    |          |          |          |          |          |
+| Informativo de EPI e segurança para o funcionário        |          |          |          |          |          |
