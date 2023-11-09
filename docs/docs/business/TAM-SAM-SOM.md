@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Total Addressable Market, Service Addressable Market e Service Obtainable Market
+# TAM, SAM e SOM
 
 ## TAM - Total Addressable Market
 
@@ -49,7 +49,7 @@ Isso resultaria em um SAM estimado de US$ 574 milhões. Ao final, o valor do SOM
 
 Observando esses números, podemos observar que existe uma limitação grande em relação ao alcance da empresa por questões geográficas e logísticas. Nesse sentido, deve-se pensar em estrategias para evitar investimentos excessivos em mercados intangíveis, concorrentemente a maximizar a presença e a penetração no mercado tangível, impactando diretamente na proposta de valor.
 
-### Fontes
+## Fontes
 
 [^1]: [Latin America Automated Storage and Retrieval System Market Size & Share Analysis - Growth Trends & Forecasts (2023 - 2028)](https://www.mordorintelligence.com/industry-reports/latin-america-automated-storage-and-retrieval-systems-market)
 [^2]: [Instituto Brasileiro de Geografia e Estatística - Demografia das Empresas](https://www.ibge.gov.br/estatisticas/economicas/comercio/9016-estatisticas-do-cadastro-central-de-empresas.html)
