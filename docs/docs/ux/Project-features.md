@@ -21,3 +21,4 @@ Funcionalidades desenvolvidas no estado do projeto por _sprints_, cada _sprint_ 
 | Facilitador de integração com sistema de estoque         |          |          |          |          |          |
 | Monitoramento de saúde estrutural e sistema de avisos    |          |          |          |          |          |
 | Informativo de EPI e segurança para o funcionário        |          |          |          |          |          |
+| Visualização por mapa do almoxarifado (alto nível)       |          |          |          |          |          |
