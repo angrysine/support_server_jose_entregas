@@ -52,7 +52,3 @@ Confira nossa documentação no botão abaixo:
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
-
-
-
-Teste
