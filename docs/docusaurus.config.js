@@ -29,6 +29,7 @@ const config = {
     defaultLocale: "en",
     locales: ["en"],
   },
+  
 
   presets: [
     [
@@ -87,6 +88,11 @@ const config = {
           {
             to: "docs/category/liderança",
             label: "Liderança",
+            position: "left",
+          },
+          {
+            to: "docs/category/apresentações",
+            label: "Apresentações",
             position: "left",
           },
         ],
