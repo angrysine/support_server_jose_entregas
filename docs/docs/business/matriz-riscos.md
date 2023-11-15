@@ -1,4 +1,7 @@
 # Matriz de Riscos
+
+A matriz de riscos é uma ferramenta essencial na avaliação e gestão de potenciais desafios em um projeto. Ela envolve a identificação, classificação e análise dos diversos riscos que podem impactar o sucesso do empreendimento. Por meio dessa matriz, os riscos são geralmente categorizados com base na probabilidade de ocorrência e no impacto que podem causar. Ao fornecer uma visão abrangente das possíveis incertezas e ameaças, a matriz de riscos permite que sejam adotadas estratégias adequadas para mitigar, monitorar ou responder a cada risco, garantindo a tomada de decisões mais informadas e a implementação de medidas preventivas eficazes.
+
 ![img alt](/img/matriz_riscos.jpg)
 
 Essa matriz demonstra os potenciais riscos e oportunidades trazidos pelo nosso projeto, elencando suas probabilidades e impactos. 

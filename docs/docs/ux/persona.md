@@ -1,5 +1,7 @@
 # Persona
 
+Nesta seção, mergulhamos na compreensão detalhada das necessidades, características e perspectivas dos principais envolvidos no projeto. Por meio da criação de personas cuidadosamente elaboradas, buscamos personificar os diversos perfis de usuários, stakeholders e membros da equipe. Essas personas proporcionam uma visão aprofundada das expectativas e desafios enfrentados por cada grupo, orientando o processo de design e tomada de decisões de forma centrada no usuário e alinhada aos objetivos estratégicos do projeto.
+
 <div style={{backgroundColor:"#E9DCC9", color:"#000"}}>
     <center style={{paddingTop:"30px", marginLeft:"10px", marginRight:"10px"}}>
         <img width="50%" style={{borderRadius:"15px"}} src="https://tewbhv.vtexassets.com/arquivos/ids/230832-800-auto?v=638300589062300000&width=800&height=auto&aspect=true"/>

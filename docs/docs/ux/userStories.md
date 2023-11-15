@@ -4,6 +4,8 @@ sidebar_position: 2
 
 # User Stories
 
+A utilização de User Stories auxilia na produção de software ao resumir a funcionalidade em uma sentença simples e curta e ajudando na tomada de decisões de design por levar em consideração necessidades básicas do usuário.
+
 <div style={{display: "flex"}}>
 
 <div style={{width:"80%"}}>

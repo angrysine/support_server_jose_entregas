@@ -4,6 +4,8 @@ sidebar_position: 5
 
 # Matriz oceano azul
 
+A matriz de oceano azul é crucial no cenário empresarial por oferecer uma estratégia para escapar da competição saturada em mercados tradicionais. Sua importância reside na capacidade de orientar as empresas na busca por oportunidades inexploradas, promover a inovação e diferenciação, e criar demanda ao invés de simplesmente competir por uma fatia do mercado existente. Ao estimular a redefinição de limites do mercado, a matriz de oceano azul possibilita que as empresas operem em espaços únicos, evitando a comoditização e buscando margens mais saudáveis em mercados menos contestados. 
+
 ![matriz de oceano azul](/img/matriz_oceano_azul.png)
 
 **Eliminar**:
