@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'navigation-cli-python'
+package_name = 'jose_entregas'
 
 setup(
     name=package_name,
@@ -13,13 +13,14 @@ setup(
     ],
     install_requires=['setuptools'],
     zip_safe=True,
-    maintainer='hallzero',
-    maintainer_email='filipikikuchi@gmail.com',
+    maintainer='albertomiranda',
+    maintainer_email='betorm20022@gmail.com',
     description='TODO: Package description',
     license='TODO: License declaration',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            "node= jose_entregas.cli:main"
         ],
     },
 )
