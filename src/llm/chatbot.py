@@ -7,13 +7,6 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 
 
-
-
-
-
-
-
-
 # load the document and split it into chunks
 loader = TextLoader("./items.txt")
 documents = loader.load()
@@ -45,6 +38,11 @@ chain = (
     | prompt
     | model
 )
+text = ""
+for s in chain.stream("fazo?"):
+    # print(text, end="", flush=True)
+    text+=s
+    if "<|im_end|>" in text:
+        break
 
-for s in chain.stream("onde esta a banana?"):
-    print(s, end="", flush=True)
+print(text.removesuffix("<|im_end|>"))
