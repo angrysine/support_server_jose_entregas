@@ -72,27 +72,27 @@ const config = {
         },
         items: [
           {
-            to: "docs/category/negócios",
+            to: "category/negócios",
             label: "Negócios",
             position: "left",
           },
           {
-            to: "docs/category/user-experience",
+            to: "category/user-experience",
             label: "UX",
             position: "left",
           },
           {
-            to: "docs/category/programação",
+            to: "category/programação",
             label: "Programação",
             position: "left",
           },
           {
-            to: "docs/category/liderança",
+            to: "category/liderança",
             label: "Liderança",
             position: "left",
           },
           {
-            to: "docs/category/apresentações",
+            to: "category/apresentações",
             label: "Apresentações",
             position: "left",
           },

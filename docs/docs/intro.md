@@ -6,7 +6,7 @@ slug: /
 
 # Introdução
 
-# José Entregas 
+## José Entregas 
 
 ## :student: Integrantes: 
 - [Alberto da Rocha Miranda](https://www.linkedin.com/in/alberto-da-rocha-miranda-angrysine/)
