@@ -1,0 +1,5 @@
+prego1: 1,2
+prego2: 2,1
+torneira: 3,3
+fazol: 1,2
+torata: 10,5
