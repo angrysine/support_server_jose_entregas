@@ -6,6 +6,7 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 
+from item_re_return import item_feedback
 
 # load the document and split it into chunks
 loader = TextLoader("./items.txt")
@@ -45,4 +46,6 @@ for s in chain.stream("fazo?"):
     if "<|im_end|>" in text:
         break
 
-print(text.removesuffix("<|im_end|>"))
+#print(text.removesuffix("<|im_end|>"))
+
+print(item_feedback(text))
