@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+    database:
+        image: postgres:16.1-alpine
+        container_name: database
+        environment:
+            - POSTGRES_DB=plataform
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+        ports:
+            - '5432:5432'
+        volumes:
+            - ./.cache/db:/var/lib/postgresql/data
+
+    migrate:
+        build: .
+        volumes:
+            - .:/plataform
+        image: migrate:plataform
+        container_name: migrate
+        command: python manage.py migrate
+        depends_on:
+            - database
+    app:
+        build: .
+        volumes:
+            - .:/plataform
+        ports:
+            - '8000:8000'
+        image: app:plataform
+        container_name: plataform
+        command: python manage.py runserver 0.0.0.0:8000
+        depends_on:
+            - database
+            - migrate
