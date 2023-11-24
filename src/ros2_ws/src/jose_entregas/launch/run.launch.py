@@ -1,42 +1,31 @@
+
+import os
 from launch import LaunchDescription,LaunchService
 from launch_ros.actions import Node
-
-
 from launch.actions import IncludeLaunchDescription
-import os
 from ament_index_python.packages import get_package_share_directory
-
 from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-
-
-
 
 def generate_launch_description():
     
     map = input("Enter the map name: ")
 
     saved_map = IncludeLaunchDescription(PythonLaunchDescriptionSource([os.path.join(get_package_share_directory('turtlebot3_navigation2'), 'launch'), '/navigation2.launch.py']), launch_arguments={'use_sim_time': 'False', 'map':f'../maps/{map}.yaml'}.items())
-     
+
     nav2 = Node(
             package='jose_entregas',
             executable='node',
             output='screen',
-           prefix= "xterm -e"
-           
+            prefix= "xterm -e"
         )
 
     return LaunchDescription([
-       
         saved_map,
         nav2,
-     
-    ],
-    
-    
-    
-    )
+    ])
+
 #ros2 launch nav2_bringup bringup_launch.py use_sim_time:=False autostart:=False map:=path/to/map.yaml
 if __name__ == '__main__':
     ls = LaunchService()

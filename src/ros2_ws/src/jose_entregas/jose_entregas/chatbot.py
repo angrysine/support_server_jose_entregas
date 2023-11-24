@@ -11,15 +11,16 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
 
-class ChatModel(Node): 
+class ChatBotModel(Node): 
     def __init__(self):
-        super().__init__('chat_model')
-        self.publisher_ = self.create_publisher(String, 'chatbot', 10)
-        self.get_logger().info('Chat Model has been started')
-        timer_period = 3.0
-        self.i = 0 
-        self.timer = self.create_timer(timer_period, self.timer_callback)
-        self.msg_ = String()
+        super().__init__('chatbot_node')
+        self._publisher = self.create_publisher(String, 'chatbot_topic', 10)
+        self._logger = self.get_logger()
+        # Uncomment the following lines to see chabot node and debug
+        # timer_period = 3.0
+        # self.i = 0 
+        # self._timer = self.create_timer(timer_period, self.timer_callback)
+        self._msg = String()
         self._model = ollama.Ollama(model="joseentregas")
         template = """Answer the question based only on the following context:
         {context}
@@ -27,16 +28,23 @@ class ChatModel(Node):
         Question: {question}
         """
         self._prompt = ChatPromptTemplate.from_template(template)
-    
-    def timer_callback(self):
-        self.msg_.data = f'Ollama Model still running: {self.i}' 
-        self.publisher_.publish(self.msg_)
-        self.get_logger().info(f'Waiting model response: {self.msg_.data}')
-        self.get_logger().info('Chat Model is running')
-        self.i += 1
+
+    # def timer_callback(self):
+    #     """ 
+    #     This function purpose is to show that the model is still running
+    #     besides the fact that a timer is set to posterior debugging/analytics
+    #     """
+    #     self._msg.data = f'Ollama Model still running: {self.i}' 
+    #     self._publisher.publish(self._msg)
+    #     self._logger.info(f'Waiting model response: {self._msg.data}')
+    #     self._logger.info('Chat Model is running')
+    #     self.i += 1
 
     def archive_loader_and_vectorizer(self):
-        # load the document and split it into chunks
+        """ 
+        This function loads txt documents from current directory 
+        and vectorizes them
+        """
         loader = DirectoryLoader('../', 
                                 glob='**/*.txt',
                                 loader_cls=TextLoader,
@@ -67,24 +75,24 @@ class ChatModel(Node):
         output_text = ""
         for s in chain.stream(text):
             output_text+=s
-            self.timer_callback()
+            #self.timer_callback()
             if "<|im_end|>" in output_text:
                 break
         output_text = output_text.removesuffix("<|im_end|>")
         self.get_logger().info('Model output: ' + output_text)
-        self.msg_.data = output_text
-        self.publisher_.publish(self.msg_)
+        self._msg.data = output_text
+        self._publisher.publish(self._msg)
         return output_text
 
 def main():
     rclpy.init()
-    chat_model = ChatModel()
+    chat_model = ChatBotModel()
     while True:
         input_text = input("Enter a command: ")
         if input_text == "exit":
             break
         response = chat_model.chat(input_text)
-        chat_model.get_logger().info('Response: ' + response)
+        chat_model._logger.info('Response: ' + response)
     chat_model.destroy_node()
     rclpy.shutdown()
 
