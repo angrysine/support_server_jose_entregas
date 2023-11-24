@@ -6,9 +6,7 @@ def item_feedback(text=None):
         r"(?:(prego|torneira|fazol|torata))": "item",
     }
 
-    action_dict = {
-        "item": item_feedback,
-    }
+    #add action dict later, outside function?
 
     for key, value in intent_dict.items():
         pattern = re.compile(key)
