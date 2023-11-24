@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
     <head>
@@ -54,14 +56,27 @@
         {% endblock css %}
     </head>
     <body>
-        <nav class="bg-white fixed z-30 w-full">
+        <nav class="bg-gray fixed z-30 w-full">
             <div class="px-6 py-2 flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <a class="text-xl text-gray-800 font-semibold font-title"
+                       href="{% url 'index' %}"><span class="text-textPrimary">José</span> <span class="text-accent">entregas</span></a>
 
-                <a class="text-xl text-gray-800 font-semibold font-subtitle"
-                   href="{% url 'index' %}">José entregas</a>
+                    <img src="{% static 'icons/yellow-box.svg' %}"
+                         height="34"
+                         width="34"
+                         style="margin-top: -8px"
+                         alt="Logo">
 
-                <div class="hidden md:flex space-x-4">
-                    <!-- Add additional navigation items here -->
+                </div>
+
+                <div class="hidden md:flex space-x-4 font-ui">
+                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
+                       href="">Início</a>
+                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
+                       href="">Sobre</a>
+                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
+                       href="">Contato</a>
                 </div>
                 <!-- Mobile Menu Button -->
                 <button class="md:hidden">
