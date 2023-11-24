@@ -21,7 +21,8 @@ setup(
     entry_points={
         'console_scripts': [
             "node = jose_entregas.cli:main",
-            "chatbot = jose_entregas.chatbot:main"
+            "chatbot = jose_entregas.chatbot:main",
+            "robot = jose_entregas.robot_controller:main"
         ],
     },
 )
