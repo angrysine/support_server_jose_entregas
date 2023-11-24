@@ -15,7 +15,12 @@
             @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
         </style>
 
+
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.css"
+              rel="stylesheet" />
+
         <script>
             tailwind.config = {
                 theme: {
@@ -56,47 +61,43 @@
         {% endblock css %}
     </head>
     <body>
-        <nav class="bg-gray fixed z-30 w-full">
-            <div class="px-6 py-2 flex items-center justify-between">
-                <div class="flex items-center space-x-2">
-                    <a class="text-xl text-gray-800 font-semibold font-title"
-                       href="{% url 'index' %}"><span class="text-textPrimary">José</span> <span class="text-accent">entregas</span></a>
 
+        <nav class="bg-gray fixed w-64 m-3 rounded-3xl" style="height: 92%">
+            <div class="flex flex-col items-center justify-start h-full px-6 py-2">
+                <div class="flex items-center space-x-2 mt-3">
+                    <a class="text-xl text-gray-800 font-semibold font-title"
+                       href="{% url 'index' %}">
+                        <span class="text-textPrimary text-2xl">José</span> <span class="text-accent text-2xl">entregas</span>
+                    </a>
                     <img src="{% static 'icons/yellow-box.svg' %}"
                          height="34"
                          width="34"
                          style="margin-top: -8px"
                          alt="Logo">
-
                 </div>
 
-                <div class="hidden md:flex space-x-4 font-ui">
-                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
-                       href="">Início</a>
-                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
-                       href="">Sobre</a>
-                    <a class="py-2 px-2 font-ui text-gray-500 hover:text-gray-800 transition duration-300"
-                       href="">Contato</a>
+
+                <div class="flex flex-col mt-4 font-ui items-center space-y-2 mt-8 w-full">
+                    <a class="text-textPrimary hover:text-textSecondary font-title font-bold py-2 px-4 bg-zinc-800 rounded text-xl w-full text-center"
+                       href="{% url 'logs' %}">Histórico</a>
                 </div>
-                <!-- Mobile Menu Button -->
-                <button class="md:hidden">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor">
-                        <!-- SVG content -->
-                    </svg>
-                </button>
             </div>
         </nav>
-
-        <main>
+        {% comment %} center main content {% endcomment %}
+        <main class="ml-72 mt-3 flex flex-col items-center justify-start">
             {% block content %}
             {% endblock content %}
         </main>
 
-        <footer class="bg-white fixed bottom-0 w-full">
+        {% comment %}<footer class="bg-white fixed bottom-0 w-full">
             <div class="px-6 py-2">
                 <p class="text-gray-600 text-sm text-center">© {% now "Y" %} José entregas. Todos os direitos reservados.</p>
             </div>
-        </footer>
+        </footer>{% endcomment %}
+
+        <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/datepicker.min.js"></script>
 
         {% block script %}
         {% endblock script %}

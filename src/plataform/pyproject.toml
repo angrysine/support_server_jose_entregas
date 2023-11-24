@@ -1,5 +1,5 @@
 [tool.djlint]
-ignore = "T003,H030,H031,H021,H037,H014"
+ignore = "T003,H030,H031,H021,H037,H014,H006"
 format_js = true
 preserve_blank_lines = true
 
