@@ -2,7 +2,8 @@
 FROM python:3.12.0
 
 # This is to make sure that the output is not buffered
-ENV PYTHONUNBUFFERED = 1
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
 # Set the working directory to plataform
 WORKDIR /plataform

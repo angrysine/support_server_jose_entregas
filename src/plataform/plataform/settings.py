@@ -32,7 +32,7 @@ DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = []
 
 if DEBUG:
-	ALLOWED_HOSTS.append('localhost')
+    ALLOWED_HOSTS.extend(['localhost', '0.0.0.0'])
 
 
 # Application definition
