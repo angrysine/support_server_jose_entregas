@@ -1,21 +1,16 @@
+#! /usr/bin/env python3
 
-
+import re
 import rclpy
 from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 from tf_transformations import quaternion_from_euler
-
-
-
-import re
-
 
 def create_pose_stamped( pos_x, pos_y, rot_z,nav):
     q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, rot_z)
     pose = PoseStamped()
     pose.header.frame_id = 'map'
     pose.header.stamp = nav.get_clock().now().to_msg()
-     
     pose.pose.position.x = pos_x
     pose.pose.position.y = pos_y
     pose.pose.position.z = pos_x
@@ -62,13 +57,10 @@ def main():
         if positions is None:
             print("Invalid command")
             continue
-
+        
         goal_pose = create_pose_stamped(positions[0], positions[1], 0.0,nav)
-
-        
-        
-
         nav.goToPose(goal_pose)
+        
         while not nav.isTaskComplete():
             # print(nav.getFeedback())
             # print(nav.get_clock().now().to_msg().sec)
@@ -78,5 +70,4 @@ def main():
     rclpy.shutdown()
 
 if __name__ == '__main__':
-
     main()

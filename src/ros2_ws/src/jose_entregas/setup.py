@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "node= jose_entregas.cli:main"
+            "node = jose_entregas.cli:main",
+            "chatbot = jose_entregas.chatbot:main"
         ],
     },
 )
