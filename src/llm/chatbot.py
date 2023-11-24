@@ -7,6 +7,8 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 
 from item_re_return import item_feedback
+import os
+
 
 # load the document and split it into chunks
 loader = TextLoader("./items.txt")
@@ -40,7 +42,7 @@ chain = (
     | model
 )
 text = ""
-for s in chain.stream("fazo?"):
+for s in chain.stream("Torata onde está?"):
     # print(text, end="", flush=True)
     text+=s
     if "<|im_end|>" in text:
@@ -49,3 +51,7 @@ for s in chain.stream("fazo?"):
 #print(text.removesuffix("<|im_end|>"))
 
 print(item_feedback(text))
+print(text.removesuffix("<|im_end|>"))
+
+with open('output.txt', 'w') as f:
+    f.write(text.removesuffix("<|im_end|>"))
