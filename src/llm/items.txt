@@ -1,5 +1,6 @@
-prego1: 1,2
-prego2: 2,1
+prego: 1,2
+britadeira: 2,1
 torneira: 3,3
-fazol: 1,2
-torata: 10,5
+chave de fenda: 1,2
+martelo: 10,5
+ferro: 1,3

@@ -16,12 +16,9 @@ class ChatBotModel(Node):
         super().__init__('chatbot_node')
         self._publisher = self.create_publisher(String, 'chatbot_topic', 10)
         self._logger = self.get_logger()
-        # Uncomment the following lines to see chabot node and debug
-        # timer_period = 3.0
-        # self.i = 0 
-        # self._timer = self.create_timer(timer_period, self.timer_callback)
         self._msg = String()
         self._model = ollama.Ollama(model="joseentregas")
+        self._retriever = self.archive_loader_and_vectorizer()
         template = """Answer the question based only on the following context:
         {context}
         
@@ -29,16 +26,6 @@ class ChatBotModel(Node):
         """
         self._prompt = ChatPromptTemplate.from_template(template)
 
-    # def timer_callback(self):
-    #     """ 
-    #     This function purpose is to show that the model is still running
-    #     besides the fact that a timer is set to posterior debugging/analytics
-    #     """
-    #     self._msg.data = f'Ollama Model still running: {self.i}' 
-    #     self._publisher.publish(self._msg)
-    #     self._logger.info(f'Waiting model response: {self._msg.data}')
-    #     self._logger.info('Chat Model is running')
-    #     self.i += 1
 
     def archive_loader_and_vectorizer(self):
         """ 
@@ -66,16 +53,16 @@ class ChatBotModel(Node):
         return retriever
     
     def chat(self, text):
-        retriever = self.archive_loader_and_vectorizer()
+        
         chain = (
-            {"context": retriever, "question": RunnablePassthrough()}
+            {"context": self._retriever, "question": RunnablePassthrough()}
             | self._prompt
             | self._model
         )
         output_text = ""
         for s in chain.stream(text):
             output_text+=s
-            #self.timer_callback()
+           
             if "<|im_end|>" in output_text:
                 break
         output_text = output_text.removesuffix("<|im_end|>")

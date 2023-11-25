@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-package_name = 'jose_entregas'
+package_name = 'chatbot_joseentregas'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "llm_robot = jose_entregas.llm_robot:main"
+            "chatbot=chatbot_joseentregas.chatbot:main"
         ],
     },
 )
