@@ -5,7 +5,7 @@ sidebar_position: 0
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Utilização do sistema
+# Instalação de dependências
 
 Para utilizar o sistema, é necessário que o usuário instale as dependências do projeto nos dispositivos que serão utilizados e execute os comandos necessários para a execução do sistema. Sendo necessário acesso ao repositório do projeto, que pode ser encontrado no [GitHub](https://github.com/2023M8T2-Inteli/grupo1/), o computador que será utilizado como servidor, e ao robô [TurtleBot3](https://www.turtlebot.com/turtlebot3/).
 
