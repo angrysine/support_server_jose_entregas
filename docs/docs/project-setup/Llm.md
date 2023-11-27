@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Construção do modelo de llm
+# Construção do modelo de LLM
 
 Este documento tem como objetivo explicar como criar o modelo de processamento de linguagem natural (llm) utilizado pelo sistema para entender os outputs do usuário.
 
@@ -26,7 +26,7 @@ Depois disso, você pode executar o seguinte comando para criar o modelo:
 ollama create joseentregas -f Modelfile
 ```
 
-## Usage
+## Utilização
 
 Você pode usar o modelo executando o seguinte comando:
 

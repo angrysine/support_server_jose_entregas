@@ -5,7 +5,7 @@ sidebar_position: 2
 
 ## Introdução
 
-Este documento tem como objetivo explicar como inicializar o pacote do robô Jose Entregas.O robô possui 1 nó e dois launchers, sendo eles:
+Este documento tem como objetivo explicar como inicializar o pacote do robô Jose Entregas. O robô possui 1 nó e dois launchers, sendo eles:
 
 - **llmrc_robot**: Nó responsável por controlar o robô e receber os dados do chatbot.
 

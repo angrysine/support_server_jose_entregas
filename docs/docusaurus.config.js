@@ -82,13 +82,18 @@ const config = {
             position: "left",
           },
           {
+            to: "category/liderança",
+            label: "Liderança",
+            position: "left",
+          },
+          {
             to: "category/programação",
             label: "Programação",
             position: "left",
           },
           {
-            to: "category/liderança",
-            label: "Liderança",
+            to: "category/setup-do-sistema",
+            label: "Setup",
             position: "left",
           },
           {
@@ -100,7 +105,7 @@ const config = {
       },
       footer: {
         style: "dark",
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} José Entregas, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,
