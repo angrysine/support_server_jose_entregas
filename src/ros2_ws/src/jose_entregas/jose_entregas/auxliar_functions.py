@@ -33,37 +33,19 @@ def generate_initial_pose(nav)-> None:
     nav.setInitialPose(initial_pose)
     nav.waitUntilNav2Active()
 
-def move_to(self,text,nav)-> None:
-    """moves the robot to the given position"""
-    positions= get_input_position(self,text)
-    if positions is None:
-        return None
-    goal_pose = create_pose_stamped(positions[0], positions[1], 0.0,nav)
-    nav.goToPose(goal_pose)
-    
-    while not nav.isTaskComplete():
-        # print(nav.getFeedback())
-        # print(nav.get_clock().now().to_msg().sec)
-        pass
-    nav.get_logger().info('reached  point ' + str(positions))
-
-
-
-
-
-def get_input_position(self,text)->list[float]|None:
-        """ 
-        This function purpose is to get the position from the chatbot
-        using a regex, then returning it as a list of float
-        """
-        input_text = text
-        match = re.findall(r'\b\d+\b', input_text)
-        if len(match) <2:
-            return None
-        self._logger.info(f'Robot received: {text}')
-        self._logger.info(f'Robot received: {match}')
-        position = [float(match[0]),float(match[1])]
-        return position
-
+def move_to(self,nav)-> None:
+    """moves the robot next the  position in the queue"""
+    if len(self.queue) == 0:
+        return
+    while len(self.queue) > 0:
+        positions = self.queue.pop()
+        position = create_pose_stamped(positions[0],positions[1],0.0,nav)
+        nav.goToPose(position)
+        while not nav.isTaskComplete():
+            # print(nav.getFeedback())
+            # print(nav.get_clock().now().to_msg().sec)
+            pass
+        nav.get_logger().info('reached  point ' + str(positions))
+   
 
 

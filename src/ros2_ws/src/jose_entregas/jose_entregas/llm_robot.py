@@ -4,13 +4,13 @@ from nav2_simple_commander.robot_navigator import BasicNavigator
 from .auxliar_functions import move_to,generate_initial_pose
 from rclpy.node import Node
 from std_msgs.msg import String
-
+from collections import deque
 
 class Robot(Node):
     def __init__(self,nav):
         super().__init__('robot_node')
         self.nav = nav
-       
+        self.queue = deque()
         self._subscriber = self.create_subscription(
             String,
             'chatbot_topic',
@@ -27,9 +27,9 @@ class Robot(Node):
         """
         self._logger.info(f'Robot received: {msg.data}')
         self._logger.warning('Passing data to navigation controller')
-        
+        self.queue.append([float(s) for s in msg.data.split(',')])
 
-        move_to(self,msg.data,self.nav)
+        move_to(self,self.nav)
 
 
 

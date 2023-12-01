@@ -10,7 +10,7 @@ from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
-
+import re
 class ChatBotModel(Node): 
     def __init__(self):
         super().__init__('chatbot_node')
@@ -33,7 +33,7 @@ class ChatBotModel(Node):
         and vectorizes them
         """
         loader = DirectoryLoader('../', 
-                                glob='**/*.txt',
+                                glob='**/items.txt',
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
@@ -51,6 +51,20 @@ class ChatBotModel(Node):
         retriever = vectorstore.as_retriever()
 
         return retriever
+    def get_input_position(self,text)->String|None:
+        """ 
+        This function purpose is to get the position from the chatbot
+        using a regex, then returning it as a list of float
+        """
+        input_text = text
+        match = re.findall(r'\b\d+\b', input_text)
+        if len(match) <2:
+            return None
+        self._logger.info(f'Robot received: {text}')
+        self._logger.info(f'Robot received: {match}')
+        
+        return f"{match[0]},{match[1]}"
+
     
     def chat(self, text):
         
@@ -61,13 +75,14 @@ class ChatBotModel(Node):
         )
         output_text = ""
         for s in chain.stream(text):
+            
             output_text+=s
            
             if "<|im_end|>" in output_text:
                 break
         output_text = output_text.removesuffix("<|im_end|>")
         self.get_logger().info('Model output: ' + output_text)
-        self._msg.data = output_text
+        self._msg.data = self.get_input_position(output_text)
         self._publisher.publish(self._msg)
         return output_text
 
