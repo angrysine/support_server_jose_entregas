@@ -1,5 +1,12 @@
 .vscode/
 
+### SERVER JS ###
+node_modules/
+.wwebjs_cache/
+.wwebjs_auth/
+
+py.py
+
 ### ROS2 ###
 install/
 log/
