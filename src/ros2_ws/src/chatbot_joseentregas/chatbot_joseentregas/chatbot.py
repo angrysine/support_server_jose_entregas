@@ -10,7 +10,7 @@ from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
-import re
+import re, time
 
 from .socket_robot import Robot
 
@@ -92,13 +92,16 @@ class ChatBotModel(Node):
 def main():
     rclpy.init()
     chat_model = ChatBotModel()
+    robo_instancia = Robot()
     while True:
-        robot_instancia = Robot()
-        input_text = robot_instancia.requicoes()
-        if input_text == "exit":
-            break
-        response = chat_model.chat(input_text)
+        robo_instancia.comunicacao()
+        time.sleep(1)
+        input_data = robo_instancia.requicoes()
+        print("Vinda do ZAP: ",input_data)
+        response = chat_model.chat(input_data)
         chat_model._logger.info('Response: ' + response)
+        if input_data == "quit":
+            break
     chat_model.destroy_node()
     rclpy.shutdown()
 
