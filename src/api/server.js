@@ -23,13 +23,6 @@ client.initialize();
 
 client.on('message_create', async msg => {
     user.manager(msg, client)
-    // if(msg.hasMedia) {
-    //     const media = await msg.downloadMedia();
-        
-    // }
-    // else{
-    //     user.require_iten(msg.body,client)
-    // }
 
 });
 

@@ -9,7 +9,7 @@ const require_iten = (msg,client, users, cadastrado) => {
     }else{
         //client.sendMessage(msg.from,'Pedido registrado');
         console.log('Pedido registrado')
-        robo.sand(msg.body) // Criar um loop logico aqui
+        robo.send(msg.body) // Criar um loop logico aqui
         cadastrado[msg.from] = "Pedido finalizado"
 
     }
