@@ -68,7 +68,7 @@ const config = {
 
         logo: {
           alt: "Home Logo",
-          src: "img/logo.svg",
+          src: "img/inteli_logo.png",
         },
         items: [
           {
@@ -94,6 +94,11 @@ const config = {
           {
             to: "category/setup-do-sistema",
             label: "Setup",
+            position: "left",
+          },
+          {
+            to: "category/demonstrações",
+            label: "Demonstrações",
             position: "left",
           },
           {
