@@ -12,7 +12,7 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
 import re
 
-from py import Robot
+from .socket_robot import Robot
 
 class ChatBotModel(Node): 
     def __init__(self):
