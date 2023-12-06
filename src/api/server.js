@@ -23,7 +23,6 @@ client.initialize();
 
 client.on('message_create', async msg => {
     user.manager(msg, client)
-
 });
 
   

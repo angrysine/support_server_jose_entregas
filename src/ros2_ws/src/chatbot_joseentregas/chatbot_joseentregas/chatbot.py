@@ -11,6 +11,9 @@ from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddi
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
 import re
+
+from py import Robot
+
 class ChatBotModel(Node): 
     def __init__(self):
         super().__init__('chatbot_node')
@@ -90,7 +93,8 @@ def main():
     rclpy.init()
     chat_model = ChatBotModel()
     while True:
-        input_text = input("Enter a command: ")
+        robot_instancia = Robot()
+        input_text = robot_instancia.requicoes()
         if input_text == "exit":
             break
         response = chat_model.chat(input_text)
