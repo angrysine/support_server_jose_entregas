@@ -1,6 +1,7 @@
 #! /usr/bin/env python3
 
-from langchain.llms import ollama
+import openai 
+from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import  RunnablePassthrough
 from langchain.document_loaders import DirectoryLoader, TextLoader
@@ -9,22 +10,18 @@ from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
 import time
 import roslibpy
+from decouple import config
 
+KEY = config('OPENAI_API_KEY')
 class ChatBotModel(): 
     def __init__(self):
-   
-     
-        
-        
-        self._model = ollama.Ollama(model="joseentregas")
+        self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=KEY)
         self._retriever = self.archive_loader_and_vectorizer()
         template = """Answer the question based only on the following context:
         {context}
-        
         Question: {question}
         """
         self._prompt = ChatPromptTemplate.from_template(template)
-
 
     def archive_loader_and_vectorizer(self):
         """ 
@@ -36,23 +33,15 @@ class ChatBotModel():
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
-
         documents = loader.load()
-
         text_splitter = CharacterTextSplitter(chunk_size=30000, chunk_overlap=0)
-
         docs = text_splitter.split_documents(documents)
-
         embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-
         vectorstore = chroma.Chroma.from_documents(docs, embedding_function)
-
         retriever = vectorstore.as_retriever()
-
         return retriever
     
     def chat(self, text):
-        
         chain = (
             {"context": self._retriever, "question": RunnablePassthrough()}
             | self._prompt
@@ -61,7 +50,6 @@ class ChatBotModel():
         output_text = ""
         for s in chain.stream(text):
             output_text+=s
-           
             if "<|im_end|>" in output_text:
                 break
         output_text = output_text.removesuffix("<|im_end|>")
@@ -87,8 +75,6 @@ def main():
     talker.unadvertise()
     client.terminate()
     print("client disconnect")
-
-
 
 if __name__ == "__main__":
     main()
