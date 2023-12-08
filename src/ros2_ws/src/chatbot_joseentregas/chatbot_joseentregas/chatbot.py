@@ -94,12 +94,13 @@ def main():
     chat_model = ChatBotModel()
     robo_instancia = Robot()
     while True:
-        robo_instancia.comunicacao()
+        robo_instancia.start_handle()
         time.sleep(1)
-        input_data = robo_instancia.requicoes()
-        print("Vinda do ZAP: ",input_data)
-        response = chat_model.chat(input_data)
-        chat_model._logger.info('Response: ' + response)
+        input_data = robo_instancia.get_data()
+        if input_data:
+            print("Vinda do ZAP: ",input_data)
+            response = chat_model.chat(input_data)
+            chat_model._logger.info('Response: ' + response)
         if input_data == "quit":
             break
     chat_model.destroy_node()

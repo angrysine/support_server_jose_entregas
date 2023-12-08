@@ -15,7 +15,7 @@ class Robot():
 
         print(f"Servidor escutando em {host}:{port}")
 
-    def comunicacao(self):
+    def start_handle(self):
         self.client_socket, self.addr = self.server.accept()
         print(f"Conexão aceita de {self.addr[0]}:{self.addr[1]}")
         client_handler = threading.Thread(target=self.handle_client, args=(self,))
@@ -39,10 +39,14 @@ class Robot():
         finally:
             self.client_socket.close()
 
-
-    
-    def requicoes(self):
+    def call_back(self,msg):
+        self.client_socket.send(msg.encode('utf-8'))
+        
+    def get_data(self):
         return self.data
+        
+    def count_clients_promisse(self):
+        return self.clientes
 
 
 

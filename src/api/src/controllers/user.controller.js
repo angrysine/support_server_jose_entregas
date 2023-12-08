@@ -33,29 +33,30 @@ const validacao = (numero) => {
 const manager = async (msg, client) =>{
     try {
         if (msg.hasMedia) {
-            //client.sendMessage(msg.from,'Media Detectada');
-            console.log("Midia verificada")
+            client.sendMessage(msg.from,'Media Detectada');
+            //console.log("Midia verificada")
             return
         }
 
         if (namefind(msg.from)){
-            userService.require_iten(msg,client,users, cadastrado);
+            userService.require_iten(msg,client,users, cadastrado); // Tirar o users depois
             
         }else{
             if (validacao(msg.from)){
-                console.log("Acabo de ver que você não está cadastrado na minha base, me envie seu nome completo:")
-                //client.sendMessage(msg.from,"Me envie seu nome completo:");
+                //console.log("Acabo de ver que você não está cadastrado na minha base, me envie seu nome completo:")
+                client.sendMessage(msg.from,"Me envie seu nome completo:");
             }
             else{
                 cadastrado[msg.from] == "Em cadastro"
                 userService.create(msg,users); // Tirar o users depois
-                //client.sendMessage(msg.from,'Cadastro realizado com sucesso! Gostaria de realizar um pedido?');
-                console.log('Cadastro realizado com sucesso! Gostaria de realizar um pedido?')
+                client.sendMessage(msg.from,"User_MODE",'Cadastro realizado com sucesso! Gostaria de realizar um pedido?');
+                //console.log('Cadastro realizado com sucesso! Gostaria de realizar um pedido?')
             }
         }
 
       } catch (error) {
-        return console.log(error)  //client.sendMessage(msg.from,'Houve um erro ao processar sua requisição');
+        client.sendMessage(msg.from,'Houve um erro ao processar sua requisição');
+        return console.log(error)  
       }
 
 }

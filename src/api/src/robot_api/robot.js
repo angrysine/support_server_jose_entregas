@@ -4,6 +4,7 @@ const client_user = new net.Socket()
 client_user.connect(4000, '127.0.0.1', () =>{
     console.log("conetado com o robô")
 })
+
 client_user.on('data', (data) => {
     console.log(`Resposta do servidor: ${data.toString()}`);
     // Fecha a conexão após receber a resposta
@@ -17,7 +18,7 @@ client_user.on('end', () => {
 function send(msg) {
     try {
         client_user.write(msg)
-        // Evento de recebimento de menssagens do servidor
+        return "Menssagem após cliente sand"
  
     } catch (error) {
         console.log(error)

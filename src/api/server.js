@@ -8,6 +8,7 @@ const client = new Client({
     )
 });
 const user = require("../api/src/controllers/user.controller")
+const dev = require("../api/src/controllers/user.dev")
 
 
 
@@ -22,7 +23,8 @@ client.on('ready', () => {
 client.initialize();
 
 client.on('message_create', async msg => {
-    if (msg.fromMe){user.manager(msg, client)}
+    if (msg.fromMe){dev.manager(msg, client);}
+    if (msg.to == "120363204588442569@g.us"){user.manager(msg, client);}
 });
 
   
