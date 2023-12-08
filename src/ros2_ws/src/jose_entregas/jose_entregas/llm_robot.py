@@ -29,7 +29,7 @@ class Robot(Node):
         self._logger.warning('Passing data to navigation controller')
         self.queue.append([float(s) for s in msg.data.split(',')])
 
-        move_to(self,self.nav)
+        move_to(self,self.nav)  
 
 
 
