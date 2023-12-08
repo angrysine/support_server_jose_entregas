@@ -47,4 +47,4 @@ Para a web, foi utilizado o framework Django, que é um framework web de alto n�
 
 ![img alt](/img/arquitetura_llm.png)
 
-O LLM foi construído a partir da utilização do Whatsapp-web.js, que consiste em um pacote Node.js que permite a utilização do Whatsapp Web através de uma API. A partir disso, foi utilizado o Whisper da OpenAI, que é responsável pela transcrição de áudios para textos. Em seguida, foi utilizado o Ollama para interpretar a mensagem do usuário e retornar uma resposta. Por fim, foi utilizado a api da OpenAI para transformar a resposta para o usuário em formato de áudio.
+O LLM foi construído a partir da utilização do Whatsapp-web.js, que consiste em um pacote Node.js que permite a utilização do Whatsapp Web através de uma API. A partir disso, foi utilizado o Whisper da OpenAI, que é responsável pela transcrição de áudios para textos. Em seguida, foi utilizado a API da OpenAI para a interpretação da mensagem do usuário e geração de resposta, assim como a transformação da resposta para o formato de áudio.
