@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 
-import openai 
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import  RunnablePassthrough
@@ -49,11 +48,7 @@ class ChatBotModel():
         )
         output_text = ""
         for s in chain.stream(text):
-            output_text+=s
-            if "<|im_end|>" in output_text:
-                break
-        output_text = output_text.removesuffix("<|im_end|>")
-
+            output_text+=s.content
         return output_text
 
 def main():
