@@ -1,62 +1,41 @@
-const path = require("path")
-require("http://static.robotwebtools.org/roslibjs/current/roslib.min.js")
-
-// Create ros object to communicate over your Rosbridge connection
-const client_user = new ROSLIB.Ros({ url: "ws://127.0.0.1:9090" });
+const { Client, LocalAuth  } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
+const dotenv = require('dotenv');
 
 
-ros.on("connection", () => {
-    console.log("Conexão com ROS estabelecida.")
-  });
+dotenv.config();
 
-client_user.on('data', (data) => {
-    console.log(`Resposta do servidor: ${data.toString()}`);
-    // Fecha a conexão após receber a resposta
+const BOT_ID = process.env.BOT_ID;
+
+const client = new Client({
+    authStrategy: new LocalAuth(
+        {
+            clientId:"pedro"
+        }
+    )
 });
 
-// Evento de fechamento da conexão
-client_user.on('end', () => {
-    console.log('Conexão fechada pelo servidor.');
+const user = require("../api/src/controllers/user.controller")
+const dev = require("../api/src/controllers/user.dev")
+
+
+
+client.on('qr', (qr) => {
+    qrcode.generate(qr,{small:true})
 });
 
-
-
-// Criar um publicador para o tópico /my_publish_topic
-const my_publish_topic_publisher = new ROSLIB.Topic({
-    ros,
-    name: '/my_publish_topic',
-    messageType: 'std_msgs/String'
+client.on('ready', () => {
+    console.log('Client is ready!');
 });
 
-// Função para publicar uma mensagem no tópico
-function publishMessage(messageText) {
-    const message = new ROSLIB.Message({
-        data: messageText
-    });
+client.initialize();
 
-    // Publicar a mensagem no tópico
-    my_publish_topic_publisher.publish(message);
-}
+client.on('message_create', async msg => {
+    if (msg.fromMe){dev.manager(msg, client);}
+    if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
+});
 
+  
 
-
-
-function send(msg) {
-    try {
-        client_user.write(msg)
-        publishMessage(msg);
-        const spawn = require("child_process").spawn;
-        const pythonProcess = spawn('python3',[path.resolve(__dirname, 'tts.py'), msg]);
-        return "Mensagem após cliente send";
- 
-    } catch (error) {
-        console.log(error)
-    }
-}
-
-
-module.exports = {
-    send,
-};
 
 
