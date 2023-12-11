@@ -1,24 +1,14 @@
-const net = require("net")
+const rclnodejs = require('rclnodejs');
 const path = require("path")
 
-const client_user = new net.Socket()
-client_user.connect(4000, '127.0.0.1', () =>{
-    console.log("conetado com o robô")
-})
-
-client_user.on('data', (data) => {
-    console.log(`Resposta do servidor: ${data.toString()}`);
-    // Fecha a conexão após receber a resposta
-});
-
-// Evento de fechamento da conexão
-client_user.on('end', () => {
-    console.log('Conexão fechada pelo servidor.');
-});
+// Create ros object to communicate over your ros connections
+rclnodejs.init()
+const node = rclnodejs.createNode('client');
+const publisher = node.createPublisher('std_msgs/msg/String', 'llm_topic');
 
 function send(msg) {
     try {
-        client_user.write(msg)
+        publisher.publish(`${msg}`);
         const spawn = require("child_process").spawn;
         const pythonProcess = spawn('python3',[path.resolve(__dirname, 'tts.py'), msg]);
         return "Mensagem após cliente send";

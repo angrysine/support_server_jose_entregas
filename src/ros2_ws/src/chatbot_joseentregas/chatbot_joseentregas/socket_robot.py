@@ -1,12 +1,13 @@
 import socket
 import threading
 import time
+a = x + 1
 
 class Robot():
     def __init__(self) -> None:
         self.clientes = 0
         self.data = ''
-        host = '127.0.0.1' 
+        host = '127.0.0.1'
         port = 4000
 
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -20,7 +21,7 @@ class Robot():
         print(f"Conexão aceita de {self.addr[0]}:{self.addr[1]}")
         client_handler = threading.Thread(target=self.handle_client, args=(self,))
         client_handler.start()
-        
+
 
     def handle_client(self,none):
         self.clientes += 1
@@ -41,10 +42,10 @@ class Robot():
 
     def call_back(self,msg):
         self.client_socket.send(msg.encode('utf-8'))
-        
+
     def get_data(self):
         return self.data
-        
+
     def count_clients_promisse(self):
         return self.clientes
 
