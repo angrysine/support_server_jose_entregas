@@ -32,7 +32,7 @@ client.initialize();
 
 client.on('message_create', async msg => {
     if (msg.fromMe){dev.manager(msg, client);}
-    if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
+    //if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
 });
 
   
