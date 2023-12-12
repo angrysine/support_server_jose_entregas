@@ -1,6 +1,11 @@
 from tf_transformations import quaternion_from_euler
 from geometry_msgs.msg import PoseStamped
 import re
+from python_tsp.exact import solve_tsp_dynamic_programming
+import math
+import numpy as np
+from collections import deque
+
 def create_pose_stamped( pos_x, pos_y, rot_z,nav) -> PoseStamped:
     """Creates a position in the map frame with the given coordinates and rotation"""
     q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, rot_z)
@@ -33,37 +38,41 @@ def generate_initial_pose(nav)-> None:
     nav.setInitialPose(initial_pose)
     nav.waitUntilNav2Active()
 
-def move_to(self,text,nav)-> None:
-    """moves the robot to the given position"""
-    positions= get_input_position(self,text)
-    if positions is None:
-        return None
-    goal_pose = create_pose_stamped(positions[0], positions[1], 0.0,nav)
-    nav.goToPose(goal_pose)
+def move_to(self,nav)-> None:
+    """moves the robot next the  position in the queue"""
+    if len(self.queue) == 0:
+        return
+    while len(self.queue) > 0:
+        positions = self.queue.pop()
+        position = create_pose_stamped(positions[0],positions[1],0.0,nav)
+        nav.goToPose(position)
+        while not nav.isTaskComplete():
+            # print(nav.getFeedback())
+            # print(nav.get_clock().now().to_msg().sec)
+            pass
+        nav.get_logger().info('reached  point ' + str(positions))
     
-    while not nav.isTaskComplete():
-        # print(nav.getFeedback())
-        # print(nav.get_clock().now().to_msg().sec)
-        pass
-    nav.get_logger().info('reached  point ' + str(positions))
+def sort_points(points)-> deque:
 
+    _points = points.copy()
 
+    _points.appendleft([0,0])
 
+    """sorts the points in the list of points using the travelling salesman problem algorithm"""
+    distance_array = []
+    distance_for_point = []
+    for point1 in _points:
+        for point2 in _points:
+            distance_for_point.append(math.dist(point1,point2))
+        distance_array.append(distance_for_point)
+        distance_for_point = []
 
+    permutation, _ = solve_tsp_dynamic_programming(np.array(distance_array))
 
-def get_input_position(self,text)->list[float]|None:
-        """ 
-        This function purpose is to get the position from the chatbot
-        using a regex, then returning it as a list of float
-        """
-        input_text = text
-        match = re.findall(r'\b\d+\b', input_text)
-        if len(match) <2:
-            return None
-        self._logger.info(f'Robot received: {text}')
-        self._logger.info(f'Robot received: {match}')
-        position = [float(match[0]),float(match[1])]
-        return position
+    sorted_points = deque()
+    for i in permutation:
+        sorted_points.append(_points[permutation[i]])
 
+    sorted_points.append(sorted_points.popleft())
 
-
+    return sorted_points

@@ -1,0 +1,6 @@
+prego: 1,2
+britadeira: 2,1
+torneira: 3,3
+chave de fenda: 1,2
+martelo: 10,5
+ferro: 1,3
