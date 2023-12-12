@@ -1,6 +1,11 @@
 from tf_transformations import quaternion_from_euler
 from geometry_msgs.msg import PoseStamped
 import re
+from python_tsp.exact import solve_tsp_dynamic_programming
+import math
+import numpy as np
+from collections import deque
+
 def create_pose_stamped( pos_x, pos_y, rot_z,nav) -> PoseStamped:
     """Creates a position in the map frame with the given coordinates and rotation"""
     q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, rot_z)
@@ -46,6 +51,28 @@ def move_to(self,nav)-> None:
             # print(nav.get_clock().now().to_msg().sec)
             pass
         nav.get_logger().info('reached  point ' + str(positions))
-   
+    
+def sort_points(points)-> deque:
 
+    _points = points.copy()
 
+    _points.appendleft([0,0])
+
+    """sorts the points in the list of points using the travelling salesman problem algorithm"""
+    distance_array = []
+    distance_for_point = []
+    for point1 in _points:
+        for point2 in _points:
+            distance_for_point.append(math.dist(point1,point2))
+        distance_array.append(distance_for_point)
+        distance_for_point = []
+
+    permutation, _ = solve_tsp_dynamic_programming(np.array(distance_array))
+
+    sorted_points = deque()
+    for i in permutation:
+        sorted_points.append(_points[permutation[i]])
+
+    sorted_points.append(sorted_points.popleft())
+
+    return sorted_points

@@ -268,3 +268,4 @@ webots-ros2-turtlebot==2023.1.1
 webots-ros2-universal-robot==2023.1.1
 xacro==2.0.8
 yarl @ file:///home/conda/feedstock_root/build_artifacts/yarl_1696732508809/work
+python-tsp
