@@ -2,13 +2,21 @@ import rclpy
 from nav2_simple_commander.robot_navigator import BasicNavigator
 from geometry_msgs.msg import PoseStamped
 from tf_transformations import quaternion_from_euler
-from math import pi
 from std_msgs.msg import String
 import re
 
 
 class Robot():
     def __init__(self):
+        super().__init__('robot_node')
+        self._publisher = self.create_publisher(String, 'api_topic', 10)
+        self._subscriber = self.create_subscription(
+            String,
+            'chatbot_topic',
+            self.listener_callback,
+            10)
+        self._logger = self.get_logger()
+        self._msg = String()
         self.nav = BasicNavigator()
         q_x, q_y, q_z, q_w = quaternion_from_euler(0.0, 0.0, 0.0)
         initial_pose = PoseStamped()
@@ -51,8 +59,9 @@ class Robot():
         pose.pose.orientation.w = q_w
         return pose
 
-
-
+    def listener_callback(msg,self):
+        self._logger.info(f'Robot received: {msg.data}')
+        self.go_to()
 
 
 
