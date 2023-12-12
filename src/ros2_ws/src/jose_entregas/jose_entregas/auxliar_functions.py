@@ -39,6 +39,7 @@ def generate_initial_pose(nav)-> None:
     nav.waitUntilNav2Active()
 
 def move_to(self,nav)-> None:
+    
     """moves the robot next the  position in the queue"""
     if len(self.queue) == 0:
         return
@@ -51,12 +52,12 @@ def move_to(self,nav)-> None:
             # print(nav.get_clock().now().to_msg().sec)
             pass
         nav.get_logger().info('reached  point ' + str(positions))
-    
+    self.feedback.publish("i am done")
 def sort_points(points)-> deque:
 
     _points = points.copy()
 
-    _points.appendleft([0,0])
+    _points.appendleft([0.0,0.0])
 
     """sorts the points in the list of points using the travelling salesman problem algorithm"""
     distance_array = []
@@ -74,5 +75,5 @@ def sort_points(points)-> deque:
         sorted_points.append(_points[permutation[i]])
 
     sorted_points.append(sorted_points.popleft())
-
+    
     return sorted_points
