@@ -18,6 +18,17 @@ services:
             timeout: 5s
             retries: 5
 
+    makemigrations:
+        build: .
+        volumes:
+            - .:/plataform
+        image: makemigrations:plataform
+        container_name: makemigrations
+        command: python manage.py makemigrations
+        depends_on:
+            database:
+                condition: service_healthy
+
     migrate:
         build: .
         volumes:
@@ -28,6 +39,8 @@ services:
         depends_on:
             database:
                 condition: service_healthy
+            makemigrations:
+                condition: service_completed_successfully
     app:
         build: .
         volumes:
