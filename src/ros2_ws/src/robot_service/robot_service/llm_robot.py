@@ -30,7 +30,7 @@ class ChatBotModel(Node):
         self._logger.info(f'Robot received: {msg.data}')
         self._logger.warning('Passing data to navigation controller')
         self.chat(msg.data)
-    def get_input_position(self,text)->String|None:
+    def get_input_position(self,text):
         """
         This function purpose is to get the position from the chatbot
         using a regex, then returning it as a list of float
@@ -40,13 +40,13 @@ class ChatBotModel(Node):
         match = re.findall(r'[-+]?(\d*\.\d+|\d+)([eE][-+]?\d+)?', input_text)
         position = [float(i[0]) for i in match]
         self._logger.info(f'position: {position}')
-        return position
+        return str(position)
+
     def chat(self, text):
         output_text = self._model.chat(text)
         self.get_logger().info('Model output: ' + output_text)
         self._msg.data = self.get_input_position(output_text)
         self._publisher.publish(self._msg)
-        return output_text
 
 def main():
     rclpy.init()
