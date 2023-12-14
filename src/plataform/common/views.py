@@ -1,6 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
+from django.views.decorators.csrf import csrf_exempt
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import Log
+from .serializers import LogSerializer
 
 class HomeView(TemplateView):
     template_name = 'home.jinja'
@@ -17,139 +22,53 @@ class LogsView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
+        logs_from_database = Log.objects.all()
+
         context['logs'] = [
             {
                 "user": {
-                    "name": "ViniciosLugli",
-                    "email": "Vinicios.Lugli@sou.inteli.edu.br"
+                    "name": entry.requester_name,
+                    "number": entry.requester_number
                 },
                 "item": {
-                    "description": "Porca M8",
-                    "category": "Parafusos"
+                    "description": entry.item,
+                    "category": entry.category,
                 },
                 "request": {
-                    "quantity": 10,
-                    "unit": "unidades",
+                    "quantity": entry.quantity,
+                    "unit": "Unidades",
                 },
                 "created_at": {
-                    "date": "2022-10-18",
-                    "time": "20:43:51",
+                    "date": entry.date.date(),
+                    "time": entry.date.time(),
                 },
-                "status": "Concluído"
-            },
-            {
-                "user": {
-                    "name": "AlbertoMiranda",
-                    "email": "Alberto.Miranda@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Arruela 8mm",
-                    "category": "Parafusos"
-                },
-                "request": {
-                    "quantity": 4,
-                    "unit": "unidades",
-                },
-                "created_at": {
-                    "date": "2022-10-18",
-                    "time": "14:20:43",
-                },
-                "status": "Concluído"
-            },
-            {
-                "user": {
-                    "name": "CaioMartins",
-                    "email": "Caio.Abreu@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Rolamento 608",
-                    "category": "Rolamentos"
-                },
-                "request": {
-                    "quantity": 6,
-                    "unit": "pares",
-                },
-                "created_at": {
-                    "date": "2022-10-18",
-                    "time": "12:00:03",
-                },
-                "status": "Concluído"
-            },
-            {
-                "user": {
-                    "name": "FilipiKikuchi",
-                    "email": "Filipi.Kikuchi@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Junta Universal",
-                    "category": "Juntas"
-                },
-                "request": {
-                    "quantity": 2,
-                    "unit": "conjuntos",
-                },
-                "created_at": {
-                    "date": "2022-10-16",
-                    "time": "09:30:00",
-                },
-                "status": "Sem estoque"
-            },
-            {
-                "user": {
-                    "name": "MihaellAlves",
-                    "email": "Mihaell.Alves@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Mola 10x50mm",
-                    "category": "Molas"
-                },
-                "request": {
-                    "quantity": 18,
-                    "unit": "unidades",
-                },
-                "created_at": {
-                    "date": "2022-10-16",
-                    "time": "10:03:02",
-                },
-                "status": "Concluído"
-            },
-            {
-                "user": {
-                    "name": "PabloRuan",
-                    "email": "Pablo.Viana@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Engrenagem 20 dentes",
-                    "category": "Engrenagens"
-                },
-                "request": {
-                    "quantity": 1,
-                    "unit": "conjunto",
-                },
-                "created_at": {
-                    "date": "2022-10-14",
-                    "time": "07:05:05",
-                },
-                "status": "Pendente"
-            },
-            {
-                "user": {
-                    "name": "JoaoRodrigues",
-                    "email": "Joao.Rodrigues@sou.inteli.edu.br"
-                },
-                "item": {
-                    "description": "Engrenagem 24 dentes",
-                    "category": "Engrenagens"
-                },
-                "request": {
-                    "quantity": 3,
-                    "unit": "conjuntos",
-                },
-                "created_at": {
-                    "date": "2022-10-14",
-                    "time": "09:45:25",
-                },
-                "status": "Concluído"
+                "status": entry.Status(entry.status).name,
             }
+            for entry in logs_from_database
         ]
         return context
+
+@api_view(['POST'])
+def create_log(request):
+    if request.method == 'POST':
+        data = request.data
+        serializer = LogSerializer(data=data)
+
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+@api_view(['POST'])
+def update_status(request):
+    if request.method == 'POST':
+        data = request.data
+        id = data['id']
+        new_status = data['status']
+        log = Log.objects.get(id=id)
+        log.status = new_status
+        log.save()
+        return Response(status=status.HTTP_200_OK)
+    return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
