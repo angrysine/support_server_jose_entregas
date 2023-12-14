@@ -1,5 +1,5 @@
 # Using python 3.12.0 as base image
-FROM python:3.12.0
+FROM python:3.12.0-slim-bookworm
 
 # This is to make sure that the output is not buffered
 ENV PYTHONDONTWRITEBYTECODE 1
