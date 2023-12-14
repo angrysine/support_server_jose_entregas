@@ -16,5 +16,6 @@ class Log(models.Model):
     requester_number = models.CharField(max_length=100)
     item = models.CharField(max_length=100)
     quantity = models.IntegerField()
+    category = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=Status.choices(), default=Status.PENDING)

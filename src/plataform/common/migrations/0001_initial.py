@@ -20,6 +20,7 @@ class Migration(migrations.Migration):
                 ('requester_number', models.CharField(max_length=100)),
                 ('item', models.CharField(max_length=100)),
                 ('quantity', models.IntegerField()),
+                ('category', models.CharField(max_length=100)),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('status', models.IntegerField(choices=[(0, 'REJECTED'), (1, 'PENDING'), (2, 'APPROVED')], default=common.models.Log.Status['PENDING'])),
             ],
