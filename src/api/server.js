@@ -1,12 +1,16 @@
+
+// Imports
 const { Client, LocalAuth  } = require('whatsapp-web.js');
 const qrcode = require('qrcode-terminal');
 const dotenv = require('dotenv');
 
+const user = require("../api/src/controllers/user.controller")
+const dev = require("../api/src/controllers/user.dev")
 
+
+//  Environment settings
 dotenv.config();
-
 const BOT_ID = process.env.BOT_ID;
-
 const client = new Client({
     authStrategy: new LocalAuth(
         {
@@ -15,11 +19,8 @@ const client = new Client({
     )
 });
 
-const user = require("../api/src/controllers/user.controller")
-const dev = require("../api/src/controllers/user.dev")
 
-
-
+// Usage of the WhatsApp client
 client.on('qr', (qr) => {
     qrcode.generate(qr,{small:true})
 });
@@ -34,8 +35,3 @@ client.on('message_create', async msg => {
     if (msg.fromMe){dev.manager(msg, client);}
     //if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
 });
-
-  
-
-
-

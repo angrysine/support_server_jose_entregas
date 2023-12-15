@@ -7,8 +7,7 @@ from langchain.document_loaders import DirectoryLoader, TextLoader
 from langchain.embeddings.sentence_transformer import SentenceTransformerEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import chroma
-import time
-import roslibpy
+
 from decouple import config
 
 KEY = config('OPENAI_API_KEY')
@@ -16,7 +15,7 @@ class ChatBotModel():
     def __init__(self):
         self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=KEY)
         self._retriever = self.archive_loader_and_vectorizer()
-        template = """Answer the question based only on the following context:
+        template = """Answer the questionin portuguese, and used the embeded data to answer,if you dont know the answer say youdont know, answwer based only on the following context:
         {context}
         Question: {question}
         """
@@ -51,25 +50,10 @@ class ChatBotModel():
             output_text+=s.content
         return output_text
 
-def main():
-    client = roslibpy.Ros(host='localhost', port=9090)
-    client.run()
-    talker = roslibpy.Topic(client, '/chatbot_topic', 'std_msgs/String')
-    chat_model = ChatBotModel()
-    while client.is_connected:
-        while True:
-            input_text = input("Enter a command: ")
-            if input_text == "exit":
-                break
-            response = chat_model.chat(input_text)
-            print("response: "+response)
-            talker.publish(roslibpy.Message({'data': response}))
-            print('Sending message...')
-            time.sleep(1)
-        break
-    talker.unadvertise()
-    client.terminate()
-    print("client disconnect")
+
+
+
 
 if __name__ == "__main__":
-    main()
+    llm = ChatBotModel()
+    print("aa")

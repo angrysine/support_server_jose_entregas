@@ -52,7 +52,7 @@ Para testar os requisitos não-funcionais, foram preparados testes unitários (n
 
 | N° | Teste | Status | Procedimento | Resultados | Observação |
 |:--:|:-----:|:------:|:------------:|:----------:|:----------:|
-| 1  | O sistema deve ser capaz de processar comandos de fala ou texto em menos de 2 segundos | 🚧 WIP | Utilizando um cronômetro, mediu-se o tempo que leva para registrar o comando e transformá-lo em coordenada efetiva para o robô | <ul> <li>✅ A conversão de texto para comando leva menos de 1ms</li> <li>🚧 A conversão de fala para comando ainda não foi testada</li> </ul> | - |
+| 1  | O sistema deve ser capaz de processar comandos de fala ou texto em menos de 2 segundos | ✅ Sucesso | Utilizando um cronômetro, mediu-se o tempo que leva para registrar o comando e transformá-lo em coordenada efetiva para o robô | <ul> <li>✅ A conversão de texto para comando leva menos de 1ms</li> <li>🚧 A conversão de fala para comando leva em torno de 1s a 1.5s para ser processada</li> </ul> | O tempo de conversão pode variar dependendo da conexão com a Internet, visto que depende de uma API externa |
 | 2  | O sistema deve ser capaz de mapear um espaço de 1000 metros quadrados em não mais que 15 minutos | ❔ Ainda não testado | - | - | -|
 | 3  | O sistema de controle de inventário deve ser capaz de atualizar o status de um item em menos de 1 segundo após o robô pegá-lo | ❔ Ainda não testado | - | - | Ainda não há um inventário para fazer o teste |
 | 4  | A aplicação deve ser capaz de exibir os itens disponíveis em menos de 3 segundos após a solicitação | ❔ Ainda não testado | - | - | Ainda não há um inventário para fazer o teste |

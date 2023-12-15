@@ -1,7 +1,7 @@
 #! /usr/bin/env python3
 import rclpy
 from nav2_simple_commander.robot_navigator import BasicNavigator
-from .auxliar_functions import move_to,generate_initial_pose
+from .auxliar_functions import move_to,generate_initial_pose,sort_points
 from rclpy.node import Node
 from std_msgs.msg import String
 from collections import deque
@@ -17,6 +17,7 @@ class Robot(Node):
             self.listener_callback,
             10)
         self._logger = self.get_logger()
+        self.feedback= self.create_publisher(String, 'feedback_topic', 10)
 
       
       
@@ -26,10 +27,19 @@ class Robot(Node):
         This function purpose is to receive the data from the chatbot topic and pass it to the navigation controller
         """
         self._logger.info(f'Robot received: {msg.data}')
+       
         self._logger.warning('Passing data to navigation controller')
-        self.queue.append([float(s) for s in msg.data.split(',')])
+        if msg.data == "run":
+            if self.nav.isTaskComplete():
+                self.queue=sort_points(self.queue)
+                move_to(self,self.nav)  
+            else:
+                self.feedback.publish("i am busy")
+                
+        else:
+            self.queue.append([float(s) for s in msg.data.split(',')])
 
-        move_to(self,self.nav)  
+        
 
 
 
