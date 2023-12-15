@@ -35,6 +35,14 @@ const client = new Client({
 });
 ```
 
+Importações:
+- <b>whatsapp-web.js:</b> Biblioteca para interagir com o WhatsApp Web.
+- <b>qrcode-terminal:</b> Biblioteca que possibilita a exibição de qr codes no terminal.
+- <b>dotenv:</b> Biblioteca que permite trabalhar com variáveis de ambiente.
+
+
+<p>As configurações do ambiente incluem o número do WhatsApp armazenado na constante 'BOT_ID' e uma configuração para que o <b>client</b> saiba que deve manter a sessão do WhatsApp.</p>
+
 ```javascript
 // Usage of the WhatsApp client
 client.on('qr', (qr) => {
@@ -52,6 +60,14 @@ client.on('message_create', async msg => {
     if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
 });
 ```
+
+<p>Como a biblioteca do WhatsApp se trata de um socket, ela é orientada a eventos, dos quais estou utilizando:</p>
+
+- <b>'qr':</b> Usado para estabelecer uma sessão do WhatsApp Web.
+- <b>'ready':</b> Acionado quando a sessão termina de parear com whatsapp.
+- <b>'message_create':</b> Acionado quando o número cadastrado (BOT_ID) recebe uma mensagem.
+
+Nesse trecho do código, eu só verifico se a mensagem recebida foi enviada pelo próprio número cadastrado. Se sim, envio o fluxo de desenvolvimento; se não, envio o fluxo de usuário normal.
 
 ### API - user.controller.js
 <p><b>Caminho do diretório:</b> grupo1/src/api/controllers/user.controller.js</p>
@@ -92,6 +108,11 @@ const validacao = (numero) => {
 }
 ```
 
+Na camada de controle, faço o gerenciamento da sessão do cliente e o cadastro em tempo de execução. A variável 'cadastro' serve para controlar o fluxo das mensagens, sendo possível incorporar os valores:
+
+- <b>"Em uso":</b> As mensagens são encaminhadas diretamente para o robô.
+- <b>"Em cadastro":</b> Registra o nome do cliente.
+- <b>"Pedido finalizado":</b> Indica o termino da conversa.
 
 ### API - user.service.js
 <p><b>Caminho do diretório:</b> grupo1/src/api/services/user.service.js</p>
@@ -121,6 +142,42 @@ const create =(msg,users) =>{
 }
 ```
 
+Na camada de serviço que o sistema execulta as ações necessárias, tendo no momento duas:
+
+- <b>"require_iten":</b> Manda a menssagem para o robô.
+- <b>"create":</b> Finaliza o cadastro adicionando o número ao array de usuários.
+
+### API - robot.js
+<p><b>Caminho do diretório:</b> grupo1\src\api\src\robot_api\robot.js</p>
+
+```javascript
+const rclnodejs = require('rclnodejs');
+const path = require("path")
+
+// Create ros object to communicate over your ros connections
+rclnodejs.init()
+const node = rclnodejs.createNode('client');
+const publisher = node.createPublisher('std_msgs/msg/String', 'llm_topic');
+
+// Message publisher
+function send(msg) {
+    try {
+        publisher.publish(`${msg}`);
+        const spawn = require("child_process").spawn;
+        const pythonProcess = spawn('python3',[path.resolve(__dirname, 'tts.py'), msg]);
+        return "Mensagem após cliente send";
+
+    } catch (error) {
+        console.log(error)
+    }
+}
+```
+Importações:
+- <b>rclnodejs:</b> Biblioteca para interagir com o WhatsApp Web.
+- <b>path:</b> Biblioteca que permite trabalhar com variáveis de ambiente.
+
+Na camada robô que o sistema cria uma comunicação com os tópicos do ros, publicando no tópico 'llm_topic' as menssagens passadas pelo argumento 'msg':
+
 ### Robot Service - llm_robot.py
 <p><b>Caminho do diretório:</b> grupo1\src\ros2_ws\src\robot_service\robot_service\llm_robot.py</p>
 
@@ -140,6 +197,7 @@ class ChatBotModel(Node):
         self._model = LLM_model()
 ```
 
+Através do método construtor, realizo a criação de instância do meu modelo de LLM, crio um publisher e um subscribe.
 
 ```python
     def listener_callback(self, msg):
@@ -151,6 +209,7 @@ class ChatBotModel(Node):
         self.chat(msg.data)
 ```
 
+Com o callback do meu tópico 'llm_topic', passo a mensagem vinda do WhatsApp para o meu modelo de LLM.
 
 ```python
     def chat(self, text):
@@ -160,6 +219,7 @@ class ChatBotModel(Node):
         self._publisher.publish(self._msg)
 ```
 
+Essa função tem a responsabilidade de publicar a saída que o modelo deu para a entrada da mensagem.
 
 ```python
     def get_input_position(self,text):
@@ -177,6 +237,8 @@ class ChatBotModel(Node):
         self._logger.info(f'Erro ao detectar as peças: { len(position) }')
 ```
 
+Com essa função, filtro a saída do modelo para que sejam postadas somente as coordenadas indicadas por ele.
+
 ### Robot Service - llm.py
 <p><b>Caminho do diretório:</b> grupo1\src\ros2_ws\src\robot_service\robot_service\llm.py</p>
 
@@ -192,6 +254,8 @@ class LLM_model():
         """
         self._prompt = ChatPromptTemplate.from_template(template)
 ```
+
+No método construtor, indico qual modelo irei utilizar e crio um template de resposta para ele.
 
 ```python
     def archive_loader_and_vectorizer(self):
@@ -213,6 +277,8 @@ class LLM_model():
         return retriever
 ```
 
+Nessa função indico que tipo de codificação será utilizada para o meu arquivo de contexto, onde ele se encontra e configuro meu retriever.
+
 ```python
     def chat(self, text):
 
@@ -223,6 +289,8 @@ class LLM_model():
         )
         return str(chain.invoke(text))
 ```
+
+Invoca a chamada do modelo passando o texto vindo do meu subscribe.
 
 ### Robot Service - robot.py
 <p><b>Caminho do diretório:</b> grupo1\src\ros2_ws\src\robot_service\robot_service\llm.py</p>
@@ -244,6 +312,8 @@ class Robot(Node):
 
 ```
 
+Através do método construtor, realizo a criação de instância do Navigation, crio um publisher e um subscribe.
+
 ```python
     def listener_callback(self, msg):
         """
@@ -255,6 +325,8 @@ class Robot(Node):
         return self._msg
 
 ```
+
+No meu callback, adiciono as coordenadas públicas à minha variável _msg.
 
 ```python
     def get_input_position(self):
@@ -269,6 +341,8 @@ class Robot(Node):
 
 ```
 
+Essa função ira pegar as coordenadas vindas no formato (x,y) e passa-las para uma lista.
+
 ```python
     def move_towards_required_position(self):
         """
@@ -278,6 +352,9 @@ class Robot(Node):
         self._nav.create_pose(position[0], position[1], 0.0)
 
 ```
+
+Com a lista acima, essa função adiciona as coordenadas para o navigation.
+
 ```python
     def cheking_status(self):
         """
@@ -291,3 +368,5 @@ class Robot(Node):
         return task_status if task_status == TaskResult.SUCCEEDED else False
 
 ```
+
+Por fim, esta é uma função de controle que verifica o status de toda essa operação.
