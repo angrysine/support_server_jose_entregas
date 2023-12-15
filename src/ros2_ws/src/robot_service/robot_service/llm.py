@@ -12,7 +12,6 @@ class LLM_model():
         self._retriever = self.archive_loader_and_vectorizer()
         template = """Answer the question based only on the following context:
         {context}
-
         Question: {question}
         """
         self._prompt = ChatPromptTemplate.from_template(template)
@@ -27,19 +26,12 @@ class LLM_model():
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
-
         documents = loader.load()
-
         text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0)
-
         docs = text_splitter.split_documents(documents)
-
         embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-
         vectorstore = chroma.Chroma.from_documents(docs, embedding_function)
-
         retriever = vectorstore.as_retriever()
-
         return retriever
 
     def chat(self, text):
