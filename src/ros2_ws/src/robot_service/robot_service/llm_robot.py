@@ -13,7 +13,7 @@ from langchain.vectorstores import chroma
 import re
 
 
-class ChatBotModel(Node): 
+class ChatBotModel(Node):
     def __init__(self):
         super().__init__('llm_node')
         self._publisher = self.create_publisher(String, 'chatbot_topic', 10)
@@ -29,58 +29,50 @@ class ChatBotModel(Node):
         self._retriever = self.archive_loader_and_vectorizer()
         template = """Answer the question based only on the following context:
         {context}
-        
+
         Question: {question}
         """
         self._prompt = ChatPromptTemplate.from_template(template)
 
     def listener_callback(self, msg):
-        """ 
+        """
         This function purpose is to processes data from the llm_topic
         """
         self._logger.info(f'Robot received: {msg.data}')
         self._logger.warning('Passing data to navigation controller')
         self.chat(msg.data)
-    
     def archive_loader_and_vectorizer(self):
-        """ 
-        This function loads txt documents from current directory 
+        """
+        This function loads txt documents from current directory
         and vectorizes them
         """
-        loader = DirectoryLoader('./', 
+        loader = DirectoryLoader('./',
                                 glob='**/items.txt',
                                 loader_cls=TextLoader,
                                 show_progress=True
                             )
-
         documents = loader.load()
-
         text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=0)
-
         docs = text_splitter.split_documents(documents)
-
         embedding_function = SentenceTransformerEmbeddings(model_name="all-MiniLM-L6-v2")
-
         vectorstore = chroma.Chroma.from_documents(docs, embedding_function)
-
         retriever = vectorstore.as_retriever()
-
         return retriever
-    def get_input_position(self,text)->String|None:
 
-        """ 
+    def get_input_position(self,text):
+        """
         This function purpose is to get the position from the chatbot
         using a regex, then returning it as a list of float
         """
         input_text = text
-        #match = re.findall(r'\b\d+\b', input_text)
-        #if len(match) <2:
-            #return "Objetivo não encontrado"
         self._logger.info(f'Robot received: {text}')
-        #self._logger.info(f'Robot received: {match}')
-        return input_text
-        
-        return f"{match[0]},{match[1]}"
+        match = re.findall(r'[-+]?(\d*\.\d+|\d+)([eE][-+]?\d+)?', input_text)
+        position = [float(i[0]) for i in match]
+        self._logger.info(f'position: {position}')
+        if len(position) > 1:
+            return f"{position[0]},{position[1]}"
+        self._logger.info(f'Erro ao detectar as peças: { len(position) }')
+
     def chat(self, text):
 
         chain = (
@@ -103,4 +95,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-

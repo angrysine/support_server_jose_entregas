@@ -6,8 +6,7 @@ rclnodejs.init()
 const node = rclnodejs.createNode('client');
 const publisher = node.createPublisher('std_msgs/msg/String', 'llm_topic');
 
-//api_topic
-
+// Message publisher
 function send(msg) {
     try {
         publisher.publish(`${msg}`);

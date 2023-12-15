@@ -34,12 +34,11 @@ const validacao = (numero) => {
 }
 
 
-//
+// Chat manager
 const manager = async (msg, client) =>{
     try {
         if (msg.hasMedia) {
             client.sendMessage(msg.from,'Media Detectada');
-            //console.log("Midia verificada")
             return
         }
 
