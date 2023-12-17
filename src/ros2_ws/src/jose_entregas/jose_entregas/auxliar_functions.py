@@ -1,6 +1,6 @@
 from tf_transformations import quaternion_from_euler
 from geometry_msgs.msg import PoseStamped
-import re
+from std_msgs.msg import String
 from python_tsp.exact import solve_tsp_dynamic_programming
 import math
 import numpy as np
@@ -47,12 +47,17 @@ def move_to(self,nav)-> None:
         positions = self.queue.pop()
         position = create_pose_stamped(positions[0],positions[1],0.0,nav)
         nav.goToPose(position)
+        message = String()
+        message.data = "i am going to point " + str(positions)
+        self.feedback.publish(message)
         while not nav.isTaskComplete():
             # print(nav.getFeedback())
             # print(nav.get_clock().now().to_msg().sec)
             pass
         nav.get_logger().info('reached  point ' + str(positions))
-    self.feedback.publish("i am done")
+    message = String()
+    message.data = "i am done"
+    self.feedback.publish(message)
 def sort_points(points)-> deque:
 
     _points = points.copy()
