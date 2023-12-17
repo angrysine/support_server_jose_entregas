@@ -1,7 +1,9 @@
 const devService = require("../services/dev.service")
 
+
+// Session management
 var users = {
-    
+
 }
 
 
@@ -9,6 +11,8 @@ var cadastrado = {
 
 }
 
+
+//  Validations
 const namefind = (numero) => {
     if (users[numero]){
         console.log("User cadastrado ----> ", users[numero])
@@ -40,7 +44,7 @@ const manager = async (msg, client) =>{
 
         if (namefind(msg.from)){
             devService.require_iten(msg,client,users, cadastrado);
-            
+
         }else{
             if (validacao(msg.from)){
                 console.log("Dev_MODE","Acabo de ver que você não está cadastrado na minha base, me envie seu nome completo:")

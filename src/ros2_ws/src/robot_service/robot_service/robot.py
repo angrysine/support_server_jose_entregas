@@ -1,5 +1,4 @@
 #! /usr/bin/env python3
-
 import re
 import rclpy
 from rclpy.node import Node
@@ -38,7 +37,7 @@ class Robot(Node):
         """
         input_text = self.listener_callback()
         match = re.findall(r'\b\d+\b', input_text)
-        position = [int(match) for i in match[-2:]]
+        position = [float(match) for i in match[-2:]]
         return position
 
     def move_towards_required_position(self):

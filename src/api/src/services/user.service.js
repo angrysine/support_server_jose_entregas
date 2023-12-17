@@ -1,5 +1,6 @@
 const robo = require("../robot_api/robot")
 
+//  Item request
 const require_iten = (msg,client, users, cadastrado) => {
     console.log(cadastrado)
     if (cadastrado[msg.from] == "Em cadastro" || cadastrado[msg.from] == "Pedido finalizado"){
@@ -8,13 +9,12 @@ const require_iten = (msg,client, users, cadastrado) => {
         cadastrado[msg.from] = "Em uso"
     }else{
         client.sendMessage(msg.from,'Pedido em processo');
-        //console.log('Pedido registrado')
-        console.log(robo.send(msg.body,cadastrado[msg.from])) // Criar um loop logico aqui
-        //cadastrado[msg.from] = "Pedido finalizado"
+        robo.send(msg.body,cadastrado[msg.from])
 
     }
 }
 
+//  User registration
 const create =(msg,users) =>{
     if (users[msg.from] ){
         return
@@ -23,7 +23,7 @@ const create =(msg,users) =>{
 
 
 
-// // exportando funções criadas acima
+//  Exporting functions created above
 module.exports = {
     require_iten,
     create
