@@ -15,7 +15,7 @@ def archive_loader_and_vectorizer():
     and vectorizes them
     """
     loader = DirectoryLoader('./', 
-                            glob='**/items.txt',
+                            glob='**/teste.txt',
                             loader_cls=TextLoader,
                         )
     documents = loader.load()

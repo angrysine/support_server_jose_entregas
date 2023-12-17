@@ -1,0 +1,4 @@
+o prego esta na posição x = 1.23 e y= 0.0
+o britadeira esta na posição x = 1.21 e y=  -1.32  
+o torneira esta na posição x = 0.03 e y=  -1.43   
+o chave de fenda esta na posição x = 0.732 e y=  -0.716   
