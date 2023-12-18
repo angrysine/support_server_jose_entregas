@@ -28,9 +28,13 @@ slug: /
 
 ## 📝 Descrição
 
+O projeto José Entregas se trata de uma solução produzida por um dos grupos do curso de Engenharia da Computação no Inteli - Instituto de Tecnologia e Liderança, jutno à cervejaria Ambev. Esse projeto se desenvolveu no módulo 8 - Prototipação de um veículo terrestre autônomo, com ênfase em robótica e inteligência artificial. O projeto consiste em um robô autônomo que recebe informações através de um chatbot com o usuário (podendo se comunicar através de áudios ou textos), no contexto de um almoxarifado, e a partir disso, guia o usuário até o local desejado. 
+
 ## 📁 Estrutura de pastas
 
-## 💻 Execução dos projetos
+## 💻 Execução do projeto
+
+As instruções de instalação das dependências e execução do projeto estão disponíveis na seção de [setup do sistema](/category/setup-do-sistema).
 
 ## 📋 Licença/License
 
@@ -41,3 +45,13 @@ slug: /
 Aqui estão as referências usadas no projeto:
 
 1. <https://creativecommons.org/share-your-work/>
+2. <https://platform.openai.com/docs/overview>
+3. <https://core.telegram.org/>
+4. <https://navigation.ros.org/index.html>
+5. <https://emanual.robotis.com/docs/en/platform/turtlebot3/overview/>
+6. <https://wwebjs.dev/>
+7. <https://docs.djangoproject.com/en/5.0/>
+8. <https://tailwindcss.com/docs/installation>
+9. <https://flowbite.com/docs/getting-started/introduction/>
+10. <https://docs.docker.com/>
+11. <https://www.postgresql.org/docs/>
