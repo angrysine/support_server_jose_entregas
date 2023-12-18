@@ -1,6 +1,5 @@
-const robo = require("../robot_api/robot")
-
-const require_iten = (msg,client, users, cadastrado) => {
+const require_iten = (msg,client, users, cadastrado, publisher) => {
+    
     if (cadastrado[msg.from] == "Em cadastro" || cadastrado[msg.from] == "Pedido finalizado"){
         client.sendMessage(msg.from,`Olá ${users[msg.from]}, em que posso ajudar?`);
         //console.log(`Olá ${users[msg.from]}, em que posso ajudar?`)
@@ -8,7 +7,8 @@ const require_iten = (msg,client, users, cadastrado) => {
     }else{
         client.sendMessage(msg.from,'Pedido em processo');
         //console.log('Pedido registrado')
-        console.log(robo.send(msg.body)) // Criar um loop logico aqui
+        //console.log(robo.send(msg)) // Criar um loop logico aqui
+        publisher.publish(`${msg.body}`);
         //cadastrado[msg.from] = "Pedido finalizado"
 
     }
