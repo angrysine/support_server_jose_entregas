@@ -38,7 +38,7 @@ def generate_launch_description():
     return LaunchDescription([
         
         saved_map,
-        turtlesim_world_1,
+        # turtlesim_world_1,
         robot_controler
     ])
 

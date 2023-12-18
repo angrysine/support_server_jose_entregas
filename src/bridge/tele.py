@@ -15,6 +15,8 @@ def get_input_position(msg):
     """
     input_text = msg
     match = re.findall(r'[-+]?\d*\.\d+|[-+]?\d+', input_text)
+    if not match:
+        return None
     print(match)
     position = [float(i) for i in match]
     print(f"position: {position}")
@@ -51,6 +53,9 @@ async def audio_mode_f(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def answer_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     answer= llm.chat(update.message.text)
     position = get_input_position(answer)
+    if position is None:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text= "não entendi o que você quis dizer, tente novamente")
+        return
     chatbot_topic.send(f"{position[0]},{position[1]}")
     if audio_mode:
         tts = TTS(filename=None, text=answer)
@@ -71,6 +76,9 @@ async def answer_audio(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text= "entendi o seguinte do audio: "+speech_text+ " vou processar seu pedido.")
     answer =llm.chat(speech_text)
     position = get_input_position(answer)
+    if position is None:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text= "não entendi o que você quis dizer, tente novamente")
+        return
     chatbot_topic.send(f"{position[0]},{position[1]}")
     if audio_mode:
         tts = TTS(filename=None, text=answer)
