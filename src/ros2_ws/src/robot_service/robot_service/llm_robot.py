@@ -32,22 +32,24 @@ class ChatBotModel(Node):
         self._logger.info(f'Robot received: {msg.data}')
         if msg.data == "run":
             self._logger.info(f'/run -> Iniciei a rota: {self._msg.data}')
-            if self.nav.isTaskComplete():
+            if self.nav.isTaskComplete() and self.queue:
                 self._logger.warning(f'Passing data to navigation controller  {self.queue}')
                 self.queue=sort_points(self.queue,self)
                 self._logger.info(f'Andando...')
                 move_to(self,self.nav)  
-            else:
-                self.feedback.publish("i am busy")
+
                 
         else:
             output_text = self._model.chat(msg.data)
             self.get_logger().info('Model output: ' + output_text)
+            feedback_msg = String()
+            feedback_msg.data = f'-> {output_text}'
+            self._publisher.publish(feedback_msg)
             position = get_input_position(self,output_text)
             if position:
                 self._logger.info(f'Adicionei a posição: {position}')
                 self.queue.append(position)
-        #self._publisher.publish(self._msg)
+                
 
 def main():
     

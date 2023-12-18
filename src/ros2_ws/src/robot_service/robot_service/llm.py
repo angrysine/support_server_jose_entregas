@@ -12,7 +12,7 @@ import os
 from dotenv import load_dotenv
 
 load_dotenv()
-KEY = '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'
+KEY = ''
 
 class LLM_model():
     def __init__(self) -> None:
@@ -72,4 +72,4 @@ class LLM_model():
             | self._prompt
             | self._model
         )
-        return str(chain.invoke(text))
+        return chain.invoke(text).content

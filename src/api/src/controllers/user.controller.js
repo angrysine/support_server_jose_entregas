@@ -1,7 +1,9 @@
 const userService = require("../services/user.service")
 
 var users = {
-    "5511948701514@c.us":"jv"
+    "5511948701514@c.us":"jv",
+    "553188370651@c.us":"Pablo",
+    "5511941885317@c.us":"Kikuchi"
     
 }
 
@@ -31,7 +33,7 @@ const validacao = (numero) => {
 
 }
 
-const manager = async (msg, client) =>{
+const manager = async (msg, client,publish) =>{
     try {
         if (msg.hasMedia) {
             client.sendMessage(msg.from,'Media Detectada');
@@ -40,7 +42,7 @@ const manager = async (msg, client) =>{
         }
 
         if (namefind(msg.from)){
-            userService.require_iten(msg,client,users, cadastrado); // Tirar o users depois
+            userService.require_iten(msg,client,users, cadastrado, publish); // Tirar o users depois
             
         }else{
             if (validacao(msg.from)){
