@@ -2,7 +2,6 @@ from decouple import config
 from openai import OpenAI
 import sys
 from playsound import playsound
-import os
 
 api_key = config("OPENAI_API_KEY")
 
@@ -14,6 +13,7 @@ class TTS:
         self.text = text
     
     def transcript(self):
+        """Gets the textual content of the provided element (e.g. filename's info or raw text)"""
         if self.filename is not None:
             with open(self.filename, "r") as f:
                 self.text = f.read()
@@ -21,6 +21,7 @@ class TTS:
         return self.text
     
     def generate_audio(self):
+        """Using the OpenAI API, transforms the current text into audio file"""
         self.transcript()
         response = client.audio.speech.create(
             model='tts-1',
@@ -28,18 +29,16 @@ class TTS:
             input=self.text,
         )
 
-        script_directory = os.getcwd()
-
-        response.stream_to_file(f"{script_directory}/audio.mp3")
+        response.stream_to_file("./audio/audio.mp3")
         return
 
     def play(self):
+        """Plays the generated audio"""
         playsound("audio.mp3")
         return
 
 
 def main(args=sys.argv):
-    print(args)
     tts = TTS(filename=None, text=args[1])
     tts.generate_audio()
     tts.play()

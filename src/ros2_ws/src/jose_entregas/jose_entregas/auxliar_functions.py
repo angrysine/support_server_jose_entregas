@@ -1,6 +1,6 @@
 from tf_transformations import quaternion_from_euler
 from geometry_msgs.msg import PoseStamped
-import re
+from std_msgs.msg import String
 from python_tsp.exact import solve_tsp_dynamic_programming
 import math
 import numpy as np
@@ -43,16 +43,22 @@ def move_to(self,nav)-> None:
     """moves the robot next the  position in the queue"""
     if len(self.queue) == 0:
         return
-    while len(self.queue) > 0:
-        positions = self.queue.pop()
-        position = create_pose_stamped(positions[0],positions[1],0.0,nav)
-        nav.goToPose(position)
-        while not nav.isTaskComplete():
-            # print(nav.getFeedback())
-            # print(nav.get_clock().now().to_msg().sec)
-            pass
-        nav.get_logger().info('reached  point ' + str(positions))
-    self.feedback.publish("i am done")
+   
+    positions = list(self.queue)
+    positions= [create_pose_stamped(position[0],position[1],0.0,nav) for position in positions]
+    nav.followWaypoints(positions)
+    message = String()
+    # message.data = "i am going to point " + str(positions)
+    # self.feedback.publish(message)
+    while not nav.isTaskComplete():
+        message.data = nav.get_feedback()
+        self.feedback.publish(message)
+        # print(nav.get_clock().now().to_msg().sec)
+        pass
+        
+    message = String()
+    message.data = "i am done"
+    self.feedback.publish(message)
 def sort_points(points)-> deque:
 
     _points = points.copy()

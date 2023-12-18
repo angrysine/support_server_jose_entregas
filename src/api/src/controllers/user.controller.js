@@ -1,6 +1,7 @@
 const userService = require("../services/user.service")
 
 var users = {
+    "5511948701514@c.us":"jv"
     
 }
 
@@ -49,7 +50,7 @@ const manager = async (msg, client) =>{
             else{
                 cadastrado[msg.from] == "Em cadastro"
                 userService.create(msg,users); // Tirar o users depois
-                client.sendMessage(msg.from,"User_MODE",'Cadastro realizado com sucesso! Gostaria de realizar um pedido?');
+                client.sendMessage(msg.from,'Cadastro realizado com sucesso! Gostaria de realizar um pedido?');
                 //console.log('Cadastro realizado com sucesso! Gostaria de realizar um pedido?')
             }
         }

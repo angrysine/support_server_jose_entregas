@@ -1,7 +1,8 @@
 const devService = require("../services/dev.service")
 
 var users = {
-    
+    "5511948701514@c.us":"jv",
+    "5524999485566@c.us":"Betinho"
 }
 
 

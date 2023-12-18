@@ -20,7 +20,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "start_robot = robot_service.llm_robot:main"
+            "start_llm = robot_service.llm_robot:main",
+            "start_robot = robot_service.robot:main"
         ],
     },
 )

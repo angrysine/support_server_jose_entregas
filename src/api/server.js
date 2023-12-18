@@ -1,4 +1,5 @@
 const { Client, LocalAuth  } = require('whatsapp-web.js');
+const start_subscribe = require("./src/robot_api/robot")
 const qrcode = require('qrcode-terminal');
 const dotenv = require('dotenv');
 
@@ -19,7 +20,6 @@ const user = require("../api/src/controllers/user.controller")
 const dev = require("../api/src/controllers/user.dev")
 
 
-
 client.on('qr', (qr) => {
     qrcode.generate(qr,{small:true})
 });
@@ -30,12 +30,10 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message_create', async msg => {
+client.on('message-create', async msg => {
     if (msg.fromMe){dev.manager(msg, client);}
-    //if (msg.to == `${BOT_ID}`){user.manager(msg, client);}
+    //else{console.log(msg.from)}
+    //if (msg.from == `${BOT_ID}`){user.manager(msg, client);}
 });
 
   
-
-
-
