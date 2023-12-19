@@ -6,38 +6,39 @@
 {% endblock title %}
 
 {% block content %}
-    <div class="flex flex-col w-full justify-center items-center mt-6">
+    <div class="flex flex-row w-full mt-6">
 
-        <h1 class="text-2xl font-bold mb-4">Cadastro de Usuário</h1>
-        <form id="createNumberForm">
-            {% csrf_token %}
-            <div class="mb-4">
-                <label for="name-field" class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
-                <input type="text"
-                       id="name-field"
-                       name="name"
-                       required
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+        <div class="flex-1 flex flex-col justify-center items-center">
+            <h1 class="text-2xl font-bold mb-4">Cadastro de Usuário</h1>
+            <form id="createNumberForm" class="w-full max-w-md">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="name-field" class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
+                    <input type="text"
+                           id="name-field"
+                           name="name"
+                           required
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
 
-            <div class="mb-4">
-                <label for="number-field" class="block text-gray-700 text-sm font-bold mb-2">Número:</label>
-                <input type="text"
-                       id="number-field"
-                       name="number"
-                       required
-                       class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
+                <div class="mb-4">
+                    <label for="number-field" class="block text-gray-700 text-sm font-bold mb-2">Número:</label>
+                    <input type="text"
+                           id="number-field"
+                           name="number"
+                           required
+                           class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
 
-            <div class="flex items-center justify-between">
-                <button type="submit"
-                        class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Cadastrar usuário
-                </button>
-            </div>
-        </form>
-
-        <div class="container mx-auto px-4 sm:px-8">
+                <div class="flex items-center justify-center">
+                    <button type="submit"
+                            class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Cadastrar usuário
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="flex-1 container mx-auto px-4 sm:px-32">
             <div class="py-8">
                 <div>
                     <h2 class="text-2xl font-semibold leading-tight">Usuários cadastrados e autorizados</h2>
