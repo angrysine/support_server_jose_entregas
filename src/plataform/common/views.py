@@ -53,6 +53,11 @@ class LogsView(TemplateView):
 class NumbersView(TemplateView):
     template_name = 'numbers.jinja'
 
+    class Utils:
+        @staticmethod
+        def format_number(raw_number):
+            return f'({raw_number[:2]}) {raw_number[2:7]}-{raw_number[7:]}'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
@@ -61,7 +66,7 @@ class NumbersView(TemplateView):
         context['numbers'] = [
             {
                 "id": entry.id,
-                "number": entry.number,
+                "number": self.Utils.format_number(entry.number),
                 "name": entry.name,
                 "created_at": {
                     "date": entry.date.date(),

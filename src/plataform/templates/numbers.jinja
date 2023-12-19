@@ -174,7 +174,8 @@
             event.preventDefault();
             var name = document.getElementById('name-field').value;
             var number = document.getElementById('number-field').value;
-            createNumber(name, number);
+            var raw_number = number.replace(/\D/g, '');
+            createNumber(name, raw_number);
         });
     </script>
 {% endblock script %}
