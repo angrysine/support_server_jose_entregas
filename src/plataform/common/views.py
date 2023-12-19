@@ -4,8 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Log, AuthorizedNumber
-from .serializers import LogSerializer, AuthorizedNumberSerializer
+from .models import Log, AuthorizedNumber, Item
+from .serializers import LogSerializer, AuthorizedNumberSerializer, ItemSerializer
 
 
 class HomeView(TemplateView):
@@ -140,5 +140,44 @@ class AuthorizedNumberAPI:
         if request.method == 'GET':
             autorized_numbers = AuthorizedNumber.objects.all()
             serializer = AuthorizedNumberSerializer(autorized_numbers, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+class ItemAPI:
+    @staticmethod
+    @api_view(['POST'])
+    def create_item(request):
+        if request.method == 'POST':
+            data = request.data
+            serializer = ItemSerializer(data=data)
+
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data, status=status.HTTP_201_CREATED)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @staticmethod
+    @api_view(['DELETE'])
+    def delete_item(request):
+        if request.method == 'DELETE':
+            data = request.data
+            id = data['id']
+            try:
+                item = Item.objects.get(id=id)
+            except Item.DoesNotExist:
+                return Response(status=status.HTTP_404_NOT_FOUND)
+            item.delete()
+            return Response(status=status.HTTP_200_OK)
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    @staticmethod
+    @api_view(['GET'])
+    def get_all_item(request):
+        if request.method == 'GET':
+            items = Item.objects.all()
+            serializer = ItemSerializer(items, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

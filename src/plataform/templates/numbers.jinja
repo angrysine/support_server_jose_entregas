@@ -15,6 +15,7 @@
                 <div class="mb-4">
                     <label for="name-field" class="block text-gray-700 text-sm font-bold mb-2">Nome:</label>
                     <input type="text"
+                           placeholder="Nome do usuário"
                            id="name-field"
                            name="name"
                            required
@@ -23,7 +24,9 @@
 
                 <div class="mb-4">
                     <label for="number-field" class="block text-gray-700 text-sm font-bold mb-2">Número:</label>
-                    <input type="text"
+                    <input type="tel"
+                           pattern="(\([0-9]{2}\))\s([9]{1})?([0-9]{4})-([0-9]{4})"
+                           placeholder="(11) 99999-9999"
                            id="number-field"
                            name="number"
                            required
