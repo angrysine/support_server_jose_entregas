@@ -9,16 +9,19 @@ from tts import TTS
 import re
 
 def get_input_position(msg):
-        """
-        This function purpose is to get the position from the chatbot
-        using a regex, then returning it as a list of integers
-        """
-        input_text = msg
-        match = re.findall(r'[-+]?(\d*\.\d+|\d+)([eE][-+]?\d+)?', input_text)
-        print(match)
-        position = [float(i[0]) for i in match]
-        print(f"position: {position}")
-        return position
+    """
+    This function purpose is to get the position from the chatbot
+    using a regex, then returning it as a list of integers
+    """
+    input_text = msg
+    match = re.findall(r'[-+]?\d*\.\d+|[-+]?\d+', input_text)
+    if not match:
+        return None
+    print(match)
+    position = [float(i) for i in match]
+    print(f"position: {position}")
+    return position
+
 
 KEY = config('TOKEN')
 logging.basicConfig(
@@ -29,7 +32,7 @@ chatbot_topic= Talker('chatbot_topic')
 llm = ChatBotModel()
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await context.bot.send_message(chat_id=update.effective_chat.id, text="I'm a bot, please talk to me!")
+    await context.bot.send_message(chat_id=update.effective_chat.id, text="Ola eu sou se ajudante o Jose Entregas! Pergunte para mim em texto ou aúdio sobre a posição de qualquer item no almoxarifado, se quiser que eu responda em audio mande a mensagem: /audio_mode , se quisser que eu mande o robô buscar os items mande a mensagem: /run")
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text=update.message.text)
@@ -50,6 +53,9 @@ async def audio_mode_f(update: Update, context: ContextTypes.DEFAULT_TYPE):
 async def answer_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
     answer= llm.chat(update.message.text)
     position = get_input_position(answer)
+    if position is None:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text= "não entendi o que você quis dizer, tente novamente")
+        return
     chatbot_topic.send(f"{position[0]},{position[1]}")
     if audio_mode:
         tts = TTS(filename=None, text=answer)
@@ -70,6 +76,9 @@ async def answer_audio(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(chat_id=update.effective_chat.id, text= "entendi o seguinte do audio: "+speech_text+ " vou processar seu pedido.")
     answer =llm.chat(speech_text)
     position = get_input_position(answer)
+    if position is None:
+        await context.bot.send_message(chat_id=update.effective_chat.id, text= "não entendi o que você quis dizer, tente novamente")
+        return
     chatbot_topic.send(f"{position[0]},{position[1]}")
     if audio_mode:
         tts = TTS(filename=None, text=answer)
