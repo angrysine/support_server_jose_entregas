@@ -50,6 +50,29 @@ class LogsView(TemplateView):
         return context
 
 
+class NumbersView(TemplateView):
+    template_name = 'numbers.jinja'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        numbers_from_database = AutorizedNumber.objects.all()
+
+        context['numbers'] = [
+            {
+                "id": entry.id,
+                "number": entry.number,
+                "name": entry.name,
+                "created_at": {
+                    "date": entry.date.date(),
+                    "time": entry.date.time(),
+                },
+            }
+            for entry in numbers_from_database
+        ]
+        return context
+
+
 class LogAPI:
     @staticmethod
     @api_view(['POST'])

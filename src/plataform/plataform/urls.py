@@ -16,13 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from common.views import HomeView, LogsView, LogAPI, AutorizedNumberAPI
+from common.views import HomeView, LogsView, NumbersView, LogAPI, AutorizedNumberAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', HomeView.as_view(), name='index'),
     path('logs/', LogsView.as_view(), name='logs'),
+    path('numbers/', NumbersView.as_view(), name='numbers'),
 
     path('api/logs/create/', LogAPI.create_log, name='create_log'),
     path('api/logs/status/', LogAPI.update_status, name='update_status'),
