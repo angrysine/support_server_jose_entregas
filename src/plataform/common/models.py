@@ -29,6 +29,6 @@ class AuthorizedNumber(models.Model):
 
 class Item(models.Model):
     item = models.CharField(max_length=100)
-    x = models.IntegerField()
-    y = models.IntegerField()
-    z = models.IntegerField(default=0)
+    x = models.FloatField()
+    y = models.FloatField()
+    z = models.FloatField(default=0.0)
