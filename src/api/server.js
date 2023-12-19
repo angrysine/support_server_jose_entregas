@@ -4,8 +4,6 @@ const dotenv = require('dotenv');
 const rclnodejs = require('rclnodejs');
 const { QoS } = rclnodejs;
 
-
-
 dotenv.config();
 
 const BOT_ID = process.env.BOT_ID;
@@ -29,12 +27,14 @@ node2.createSubscription(
     'whatsApp_topic',
     { qos: QoS.profileSystemDefault },
     (msg) => {
-        client.sendMessage(BOT_ID,`${msg.data}`)
+        //client.sendMessage(BOT_ID,`${msg.data}`)
+        console.log("Vinda do robo: ", msg.data)
+
     }
     );
 console.log("Subscribe inicializado")
 rclnodejs.spin(node2);
- 
+
 const node = rclnodejs.createNode('client');
 const publisher = node.createPublisher('std_msgs/msg/String', 'llm_topic');
 
@@ -51,11 +51,12 @@ client.on('ready', () => {
 
 client.initialize();
 
-client.on('message', async msg => {
+client.on('message_create', async msg => {
     //console.log(msg.from, msg.body)
-    //if (msg.fromMe){dev.manager(msg, client);}
+    if (msg.fromMe){
+        user.manager(msg, client, publisher);
+    }
     //else{console.log(msg.from)}
-    console.log(msg.from)
+
     if (msg.from == `${BOT_ID}`){user.manager(msg, client, publisher);}
 });
-
