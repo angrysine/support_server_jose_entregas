@@ -34,7 +34,10 @@ class Robot(Node):
                 self.queue=sort_points(self.queue)
                 move_to(self,self.nav)  
             else:
-                self.feedback.publish("i am busy")
+                message = String()
+                message.data = "i am busy"
+
+                self.feedback.publish(message)
                 
         else:
             self.queue.append([float(s) for s in msg.data.split(',')])
