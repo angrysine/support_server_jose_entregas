@@ -16,13 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from common.views import HomeView, LogsView, create_log, update_status
+from common.views import HomeView, LogsView, NumbersView, LogAPI, AuthorizedNumberAPI
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', HomeView.as_view(), name='index'),
     path('logs/', LogsView.as_view(), name='logs'),
-    path('logs/create/', create_log, name='create_log'),
-    path('logs/status/', update_status, name='update_status')
+    path('numbers/', NumbersView.as_view(), name='numbers'),
+
+    path('api/logs/create/', LogAPI.create_log, name='create_log'),
+    path('api/logs/status/', LogAPI.update_status, name='update_status'),
+    path('api/number/create/', AuthorizedNumberAPI.create_autorized_number, name='create_autorized_number'),
+    path('api/number/get/', AuthorizedNumberAPI.get_all_autorized_number, name='get_all_autorized_number'),
+    path('api/number/delete/', AuthorizedNumberAPI.delete_autorized_number, name='delete_autorized_number'),
 ]

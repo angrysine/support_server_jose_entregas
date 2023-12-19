@@ -24,7 +24,7 @@ services:
             - .:/plataform
         image: makemigrations:plataform
         container_name: makemigrations
-        command: python manage.py makemigrations
+        command: python manage.py makemigrations --noinput
         depends_on:
             database:
                 condition: service_healthy
