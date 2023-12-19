@@ -1,6 +1,6 @@
 from django.db.models import fields
 from rest_framework import serializers
-from .models import Log, AutorizedNumber
+from .models import Log, AuthorizedNumber
 
 
 class LogSerializer(serializers.ModelSerializer):
@@ -9,7 +9,7 @@ class LogSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class AutorizedNumberSerializer(serializers.ModelSerializer):
+class AuthorizedNumberSerializer(serializers.ModelSerializer):
     class Meta:
-        model = AutorizedNumber
+        model = AuthorizedNumber
         fields = '__all__'

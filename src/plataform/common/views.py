@@ -4,8 +4,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Log, AutorizedNumber
-from .serializers import LogSerializer, AutorizedNumberSerializer
+from .models import Log, AuthorizedNumber
+from .serializers import LogSerializer, AuthorizedNumberSerializer
 
 
 class HomeView(TemplateView):
@@ -56,7 +56,7 @@ class NumbersView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        numbers_from_database = AutorizedNumber.objects.all()
+        numbers_from_database = AuthorizedNumber.objects.all()
 
         context['numbers'] = [
             {
@@ -105,13 +105,13 @@ class LogAPI:
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
 
-class AutorizedNumberAPI:
+class AuthorizedNumberAPI:
     @staticmethod
     @api_view(['POST'])
     def create_autorized_number(request):
         if request.method == 'POST':
             data = request.data
-            serializer = AutorizedNumberSerializer(data=data)
+            serializer = AuthorizedNumberSerializer(data=data)
 
             if serializer.is_valid():
                 serializer.save()
@@ -127,8 +127,8 @@ class AutorizedNumberAPI:
             data = request.data
             id = data['id']
             try:
-                autorized_number = AutorizedNumber.objects.get(id=id)
-            except AutorizedNumber.DoesNotExist:
+                autorized_number = AuthorizedNumber.objects.get(id=id)
+            except AuthorizedNumber.DoesNotExist:
                 return Response(status=status.HTTP_404_NOT_FOUND)
             autorized_number.delete()
             return Response(status=status.HTTP_200_OK)
@@ -138,7 +138,7 @@ class AutorizedNumberAPI:
     @api_view(['GET'])
     def get_all_autorized_number(request):
         if request.method == 'GET':
-            autorized_numbers = AutorizedNumber.objects.all()
-            serializer = AutorizedNumberSerializer(autorized_numbers, many=True)
+            autorized_numbers = AuthorizedNumber.objects.all()
+            serializer = AuthorizedNumberSerializer(autorized_numbers, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)

@@ -21,7 +21,7 @@ class Log(models.Model):
     status = models.IntegerField(choices=Status.choices(), default=Status.PENDING)
 
 
-class AutorizedNumber(models.Model):
+class AuthorizedNumber(models.Model):
     number = models.CharField(max_length=100)
     name = models.CharField(max_length=100)
     date = models.DateTimeField(auto_now_add=True)
