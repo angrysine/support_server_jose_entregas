@@ -1,28 +1,27 @@
-from decouple import config
+import sys
 from openai import OpenAI
+from pathlib import Path
+import os
+from dotenv import load_dotenv
 
-api_key = config("OPENAI_API_KEY")
-client = OpenAI(api_key=api_key)
+# Carrega as variáveis de ambiente do arquivo .env
+load_dotenv()
 
-class STT:
-    def __init__(self, filename=None):
-        self.filename = filename
-        self.audio_file = open(self.filename, "rb")
+api_key = "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"
 
-    def transcribe(self):
-        if self.filename is not None:
-            transcript = client.audio.transcriptions.create(
-            model="whisper-1", 
-            file=self.audio_file, 
-            response_format="text"
-            )
-            return transcript
+client = OpenAI(
+  api_key=api_key
+)
 
-def main():    
-    # arquivo só para teste, excluir dps
-    stt = STT(filename='./audio/audio.ogg')
-    speech_text = stt.transcribe()
-    print(speech_text)
+
+def main(args=sys.argv):
+    audio_file = open(Path(__file__).parent.parent.parent / f"src/controllers/temp/audio.mp3", "rb")
+    transcript = client.audio.transcriptions.create(
+    model="whisper-1",
+    file=audio_file,
+    response_format="text"
+    )
+    print(transcript)
 
 if __name__ == "__main__":
     main()
