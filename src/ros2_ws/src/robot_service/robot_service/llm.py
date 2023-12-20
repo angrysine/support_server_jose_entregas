@@ -19,7 +19,7 @@ class LLM_model():
         self._model = ChatOpenAI(model="gpt-3.5-turbo", api_key=KEY)
         self._retriever = self.archive_loader_and_vectorizer()
         template = """Answer the question based only on the following context:
-        {context}
+        {context}, in portuguese
 
         Question: {question}
         """

@@ -62,7 +62,7 @@
     </head>
     <body>
 
-        <nav class="bg-gray fixed w-64 m-3 rounded-3xl" style="height: 92%">
+        <nav class="bg-gray fixed w-64 m-3 rounded-3xl" style="height: 85%">
             <div class="flex flex-col items-center justify-start h-full px-6 py-2">
                 <div class="flex items-center space-x-2 mt-3">
                     <a class="text-xl text-gray-800 font-semibold font-title"
@@ -76,9 +76,14 @@
                          alt="Logo">
                 </div>
 
-                <div class="flex flex-col mt-4 font-ui items-center space-y-2 mt-8 w-full">
+                <div class="flex flex-col mt-4 font-ui items-center space-y-2 mt-6 w-full">
                     <a class="text-textPrimary hover:text-textSecondary font-title font-bold py-2 px-4 bg-zinc-800 rounded text-xl w-full text-center"
-                       href="{% url 'logs' %}">Histórico</a>
+                       href="{% url 'logs' %}">Históricos</a>
+                </div>
+
+                <div class="flex flex-col mt-4 font-ui items-center space-y-2 mt-4 w-full">
+                    <a class="text-textPrimary hover:text-textSecondary font-title font-bold py-2 px-4 bg-zinc-800 rounded text-xl w-full text-center"
+                       href="{% url 'numbers' %}">Cadastros</a>
                 </div>
             </div>
         </nav>
@@ -88,11 +93,11 @@
             {% endblock content %}
         </main>
 
-        {% comment %}<footer class="bg-white fixed bottom-0 w-full">
+        <footer class="bg-white fixed bottom-0 w-full">
             <div class="px-6 py-2">
                 <p class="text-gray-600 text-sm text-center">© {% now "Y" %} José entregas. Todos os direitos reservados.</p>
             </div>
-        </footer>{% endcomment %}
+        </footer>
 
         <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.0/flowbite.min.js"></script>

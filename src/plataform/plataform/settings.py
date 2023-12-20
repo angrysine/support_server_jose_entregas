@@ -29,7 +29,7 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 # Detect whether Django is running in debug mode or not
 DEBUG = os.environ.get('DJANGO_DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app']
 
 if DEBUG:
     ALLOWED_HOSTS.extend(['localhost', '0.0.0.0'])
@@ -81,7 +81,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'plataform.wsgi.application'
+WSGI_APPLICATION = 'plataform.wsgi.app'
 
 
 # Database
