@@ -1,8 +1,0 @@
-A posição do prego se encontra em: (2.5, 1.0)
-A posição do fazol se encontra em: (2.0, 1.0)
-A posição do britadeira se encontra em: (2.5, 1.3)
-A posição do torneira se encontra em: (2.5, 2.0)
-A posição do chave de fenda se encontra em: (0.5, 1.0)
-A posição do martelo se encontra em: (2.75, 2.3)
-A posição do ferro se encontra em: (2.85, 3.0)
-A posição do icial se encontra em: (0.0, 0.0)
